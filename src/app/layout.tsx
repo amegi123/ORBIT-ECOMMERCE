@@ -3,6 +3,7 @@ import './globals.css';
 import { CartProvider } from '@/context/CartContext';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { MobileBottomNav } from '@/components/MobileBottomNav';
 import { ToastContainer } from '@/components/Toast';
 import { CartDrawer } from '@/components/product/CartDrawer';
 import { ProductComparison } from '@/components/product/ProductComparison';
@@ -29,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased selection:bg-blue-600 selection:text-white bg-slate-50 text-slate-900">
+      <body className="antialiased selection:bg-[#02367B] selection:text-white bg-slate-50 text-slate-900">
         <CartProvider>
           <div className="min-h-screen flex flex-col justify-between">
             <Header />
@@ -37,6 +38,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <MobileBottomNav />
           </div>
           <ToastContainer />
           <CartDrawer />

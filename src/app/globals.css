@@ -27,7 +27,7 @@ body {
 
 .img-magnifier-glass {
   position: absolute;
-  border: 2px solid #2563eb;
+  border: 2px solid #02367B;
   border-radius: 50%;
   cursor: none;
   width: 160px;
@@ -58,6 +58,24 @@ body {
   position: sticky;
   top: 73px;
   z-index: 30;
-  backdrop-filter: blur(12px);
-  background-color: rgba(255, 255, 255, 0.92);
+}
+
+/* Progress bar loader animation */
+@keyframes progressAnim {
+  0% {
+    width: 0%;
+    margin-left: 0%;
+  }
+  50% {
+    width: 75%;
+    margin-left: 12.5%;
+  }
+  100% {
+    width: 100%;
+    margin-left: 0%;
+  }
+}
+
+.animate-progress {
+  animation: progressAnim 1.8s ease-in-out infinite;
 }
