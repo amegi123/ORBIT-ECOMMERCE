@@ -49,14 +49,14 @@ export const Header: React.FC = () => {
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
 
-        {/* Orbit Brand Logo */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <div className="relative h-10 w-40 md:h-11 md:w-44 bg-white/95 p-1.5 rounded-lg shadow-sm hover:scale-105 transition-transform">
+        {/* Orbit Brand Logo (Clean transparent without white shape box) */}
+        <Link href="/" className="flex items-center shrink-0">
+          <div className="relative h-10 w-44 md:h-12 md:w-52 hover:scale-105 transition-transform">
             <Image
               src="/img/Orbi logo.svg"
               alt="Orbit Electronics Logo"
               fill
-              className="object-contain p-1"
+              className="object-contain drop-shadow-sm"
               priority
             />
           </div>

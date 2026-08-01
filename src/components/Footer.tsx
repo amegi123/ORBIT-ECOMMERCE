@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Phone, Mail, MapPin, Facebook, Send, Instagram, ShieldCheck, Truck } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Send, Instagram } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -11,12 +11,12 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 pb-12 border-b border-blue-900/50">
         {/* Column 1: Brand & Contact */}
         <div className="space-y-4">
-          <div className="relative h-10 w-44 bg-white p-1.5 rounded-xl shadow-sm inline-block">
+          <div className="relative h-10 w-44 inline-block">
             <Image
               src="/img/Orbi logo.svg"
               alt="Orbit Electronics Logo"
               fill
-              className="object-contain p-1"
+              className="object-contain"
             />
           </div>
 
