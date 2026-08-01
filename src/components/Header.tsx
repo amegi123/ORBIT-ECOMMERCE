@@ -7,7 +7,6 @@ import { useCart } from '@/context/CartContext';
 import {
   Search,
   ShoppingCart,
-  Heart,
   User,
   Phone,
   Menu,
@@ -49,7 +48,7 @@ export const Header: React.FC = () => {
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
 
-        {/* Orbit Brand Logo (Clean transparent without white shape box) */}
+        {/* Orbit Brand Logo */}
         <Link href="/" className="flex items-center shrink-0">
           <div className="relative h-10 w-44 md:h-12 md:w-52 hover:scale-105 transition-transform">
             <Image
@@ -90,10 +89,10 @@ export const Header: React.FC = () => {
             <span>Track Order</span>
           </Link>
 
-          {/* Phone */}
-          <a href="tel:+251911000000" className="flex items-center gap-1 hover:text-amber-300 transition-colors">
+          {/* Shortcode Phone 6226 */}
+          <a href="tel:6226" className="flex items-center gap-1 hover:text-amber-300 transition-colors font-bold text-amber-400">
             <Phone className="w-3.5 h-3.5 text-amber-400" />
-            <span>+251 911 000 000</span>
+            <span>6226</span>
           </a>
 
           {/* Language Toggle */}

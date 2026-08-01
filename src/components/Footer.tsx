@@ -28,8 +28,8 @@ export const Footer: React.FC = () => {
               <div className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">
                 Guaranteed Support
               </div>
-              <a href="tel:+251911000000" className="text-base font-black text-white hover:text-amber-400">
-                +251 911 000 000
+              <a href="tel:6226" className="text-base font-black text-white hover:text-amber-400">
+                6226
               </a>
             </div>
           </div>
