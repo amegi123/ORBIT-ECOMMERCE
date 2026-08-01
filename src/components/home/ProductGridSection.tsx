@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { HomeProduct } from '@/data/homeData';
 import { useCart } from '@/context/CartContext';
 import { Star, ShoppingCart, Eye } from 'lucide-react';
@@ -26,7 +27,14 @@ export const ProductGridSection: React.FC<ProductGridSectionProps> = ({
   columns = 4,
   centeredTitle = false,
 }) => {
-  const { addToCart, setQuickViewProduct } = useCart();
+  const router = useRouter();
+  const { addToCart, setQuickViewProduct, setIsPageNavigating } = useCart();
+
+  const handleProductClick = (e: React.MouseEvent, prodId: string) => {
+    e.preventDefault();
+    setIsPageNavigating(true);
+    router.push(`/product/${prodId}`);
+  };
 
   const handleAddToCart = (e: React.MouseEvent, prod: HomeProduct) => {
     e.stopPropagation();
@@ -99,10 +107,10 @@ export const ProductGridSection: React.FC<ProductGridSectionProps> = ({
         } gap-3 sm:gap-5`}
       >
         {products.map((prod) => (
-          <Link
+          <div
             key={prod.id}
-            href={`/product/${prod.id}`}
-            className="group relative bg-white rounded-2xl border border-slate-200 p-2.5 sm:p-4 flex flex-col justify-between hover:shadow-xl hover:border-[#02367B] transition-all duration-300 select-none"
+            onClick={(e) => handleProductClick(e, prod.id)}
+            className="group relative bg-white rounded-2xl border border-slate-200 p-2.5 sm:p-4 flex flex-col justify-between hover:shadow-xl hover:border-[#02367B] transition-all duration-300 select-none cursor-pointer"
           >
             <div>
               {/* Product Image Box */}
@@ -196,7 +204,7 @@ export const ProductGridSection: React.FC<ProductGridSectionProps> = ({
                 </button>
               </div>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </section>

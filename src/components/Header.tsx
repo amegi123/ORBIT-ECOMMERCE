@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -22,6 +22,31 @@ export const Header: React.FC = () => {
   const { cart, setIsCartOpen } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Auto-hide header on mobile when scrolling down, show when scrolling up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Only apply scroll hide/show logic on mobile (< 1024px)
+      if (window.innerWidth < 1024) {
+        if (currentScrollY > lastScrollY && currentScrollY > 60) {
+          setIsVisible(false); // Scroll down -> hide
+        } else {
+          setIsVisible(true); // Scroll up -> show
+        }
+      } else {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   // Hide Header completely on standalone login and signup pages
   if (pathname === '/login' || pathname === '/signup') {
@@ -42,7 +67,11 @@ export const Header: React.FC = () => {
   ];
 
   return (
-    <header className="w-full bg-[#02367B] text-white sticky top-0 z-40 shadow-md">
+    <header
+      className={`w-full bg-[#02367B] text-white sticky top-0 z-40 shadow-md transition-transform duration-300 ease-in-out ${
+        isVisible ? 'translate-y-0' : '-translate-y-full lg:translate-y-0'
+      }`}
+    >
       {/* Main Top Header Bar with zero excess margin around logo */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-2 flex items-center justify-between gap-3">
         {/* Mobile Menu Trigger */}

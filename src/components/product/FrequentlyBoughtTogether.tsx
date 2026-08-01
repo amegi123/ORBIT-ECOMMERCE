@@ -33,7 +33,6 @@ export const FrequentlyBoughtTogether: React.FC<FrequentlyBoughtTogetherProps> =
   const handleAddAllToCart = () => {
     const activeBundles = bundles.filter((b) => selectedItems.includes(b.id));
     activeBundles.forEach((b) => {
-      // Create mock product for cart
       addToCart({
         id: b.id,
         name: b.name,
@@ -67,94 +66,112 @@ export const FrequentlyBoughtTogether: React.FC<FrequentlyBoughtTogetherProps> =
   };
 
   return (
-    <div className="w-full bg-white rounded-3xl border border-slate-200 p-6 md:p-8 space-y-6 shadow-sm">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-slate-200 pb-4">
+    <div className="w-full bg-white rounded-3xl border border-slate-200/80 p-6 md:p-8 space-y-6 shadow-sm select-none font-sans">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-slate-200/80 pb-4">
         <div>
           <h3 className="text-lg font-black text-slate-900 flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-amber-500" /> Frequently Bought Together
           </h3>
-          <p className="text-xs text-slate-500 mt-0.5">Bundle your Orbit 65&quot; TV with soundbar and accessories to save more!</p>
+          <p className="text-xs text-slate-500 mt-0.5">Bundle your Orbit appliances with soundbars and accessories to save more!</p>
         </div>
         {savings > 0 && (
-          <span className="bg-amber-400 text-slate-950 font-extrabold text-xs px-3 py-1 rounded-full">
+          <span className="bg-amber-400 text-slate-950 font-extrabold text-xs px-3 py-1 rounded-full shadow-sm">
             Bundle Savings: {savings.toLocaleString()} ETB
           </span>
         )}
       </div>
 
       <div className="flex flex-col lg:flex-row items-center gap-6">
-        {/* Bundle Items Visual Carousel Grid */}
-        <div className="flex-1 flex flex-wrap items-center justify-center gap-3">
+        {/* Bundle Items Responsive Grid - 2 Products Per Row on Mobile (grid-cols-2) */}
+        <div className="w-full lg:flex-1 grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-3">
           {bundles.map((item, idx) => (
             <React.Fragment key={item.id}>
               <div
                 onClick={() => toggleItem(item.id)}
-                className={`relative group cursor-pointer p-3 rounded-2xl border-2 transition-all flex flex-col items-center w-36 sm:w-40 bg-white ${
+                className={`relative group cursor-pointer p-3 rounded-2xl border-2 transition-all flex flex-col items-center w-full sm:w-40 bg-white ${
                   selectedItems.includes(item.id)
-                    ? 'border-blue-600 shadow-md ring-2 ring-blue-500/20'
+                    ? 'border-[#02367B] shadow-md ring-2 ring-[#02367B]/20'
                     : 'border-slate-200 opacity-60 hover:opacity-100'
                 }`}
               >
                 {/* Selection Checkbox Badge */}
                 <div
-                  className={`absolute top-2 right-2 w-5 h-5 rounded-md flex items-center justify-center border ${
+                  className={`absolute top-2 right-2 w-5 h-5 rounded-md flex items-center justify-center border transition-colors ${
                     selectedItems.includes(item.id)
-                      ? 'bg-blue-600 border-blue-600 text-white'
+                      ? 'bg-[#02367B] border-[#02367B] text-white'
                       : 'border-slate-300 bg-white'
                   }`}
                 >
-                  {selectedItems.includes(item.id) && <Check className="w-3.5 h-3.5" />}
+                  {selectedItems.includes(item.id) && <Check className="w-3 h-3 stroke-[3]" />}
                 </div>
 
-                <div className="relative w-24 h-24 mb-2">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-contain"
-                  />
+                {/* Product Image */}
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 my-1">
+                  <Image src={item.image} alt={item.name} fill className="object-contain" />
                 </div>
 
-                <h4 className="text-[11px] font-bold text-slate-800 text-center line-clamp-2 leading-tight">
-                  {item.name}
-                </h4>
-
-                <div className="text-xs font-black text-slate-900 mt-1">
-                  {item.price.toLocaleString()} ETB
+                {/* Title & Price */}
+                <div className="text-center space-y-1 w-full pt-1">
+                  <p className="text-xs font-bold text-slate-800 line-clamp-2 leading-tight">
+                    {item.name}
+                  </p>
+                  <div className="flex items-center justify-center gap-1.5 text-xs">
+                    <span className="font-extrabold text-[#02367B]">
+                      {item.price.toLocaleString()} ETB
+                    </span>
+                    <span className="text-[10px] text-slate-400 line-through">
+                      {item.originalPrice.toLocaleString()}
+                    </span>
+                  </div>
                 </div>
               </div>
 
+              {/* Plus icon between items (hidden on small mobile grid to preserve clean 2-col) */}
               {idx < bundles.length - 1 && (
-                <div className="w-7 h-7 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 font-bold text-xs shrink-0">
-                  <Plus className="w-4 h-4" />
+                <div className="hidden sm:flex items-center justify-center text-slate-400">
+                  <Plus className="w-5 h-5" />
                 </div>
               )}
             </React.Fragment>
           ))}
         </div>
 
-        {/* Bundle Total & Add All CTA */}
-        <div className="w-full lg:w-72 bg-slate-900 text-white p-6 rounded-2xl space-y-4 shrink-0">
-          <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-            Total Bundle Price
-          </div>
+        {/* Bundle Summary & Add All CTA Card */}
+        <div className="w-full lg:w-72 bg-slate-50 rounded-2xl border border-slate-200 p-5 flex flex-col justify-between space-y-4 shrink-0">
           <div>
-            <div className="text-2xl font-black text-white">
-              {totalPrice.toLocaleString()} <span className="text-sm text-amber-400">ETB</span>
+            <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
+              Bundle Total ({selectedItems.length} items)
             </div>
-            {totalOriginalPrice > totalPrice && (
-              <div className="text-xs line-through text-slate-400">
-                {totalOriginalPrice.toLocaleString()} ETB
-              </div>
+
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl font-black text-slate-900">
+                {totalPrice.toLocaleString()} ETB
+              </span>
+              {savings > 0 && (
+                <span className="text-xs text-slate-400 line-through font-semibold">
+                  {totalOriginalPrice.toLocaleString()} ETB
+                </span>
+              )}
+            </div>
+
+            {savings > 0 && (
+              <p className="text-xs font-bold text-emerald-600 mt-1">
+                You Save: {savings.toLocaleString()} ETB!
+              </p>
             )}
           </div>
 
           <button
             onClick={handleAddAllToCart}
             disabled={selectedItems.length === 0}
-            className="w-full bg-amber-400 hover:bg-amber-500 disabled:opacity-50 text-slate-950 font-extrabold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all hover:scale-105"
+            className={`w-full py-3.5 px-4 rounded-xl font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md ${
+              selectedItems.length > 0
+                ? 'bg-[#02367B] hover:bg-[#005BAA] text-white hover:scale-[1.02]'
+                : 'bg-slate-300 text-slate-500 cursor-not-allowed'
+            }`}
           >
-            <ShoppingBag className="w-4 h-4" /> Add All ({selectedItems.length}) To Cart
+            <ShoppingBag className="w-4 h-4" />
+            <span>Add Bundle to Cart</span>
           </button>
         </div>
       </div>

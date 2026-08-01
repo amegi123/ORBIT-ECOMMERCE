@@ -1,6 +1,7 @@
 import { Breadcrumb } from '@/components/product/Breadcrumb';
 import { ProductGallery } from '@/components/product/ProductGallery';
 import { ProductInfo } from '@/components/product/ProductInfo';
+import { CustomerReviewsSection } from '@/components/product/CustomerReviewsSection';
 import { ProductTabs } from '@/components/product/ProductTabs';
 import { FrequentlyBoughtTogether } from '@/components/product/FrequentlyBoughtTogether';
 import { SimilarProducts } from '@/components/product/SimilarProducts';
@@ -19,13 +20,13 @@ export function generateStaticParams() {
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 space-y-8 pb-16">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 space-y-8 pb-16 font-sans">
       {/* 1. Breadcrumb Navigation */}
       <Breadcrumb hierarchy={orbitProduct.categoryHierarchy} />
 
-      {/* 2. Main Product Section (Two Columns) */}
+      {/* 2. Main Product Section matching reference screenshot layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* Left Column (Images, Zoom, Gallery, Video, 360) */}
+        {/* Left Column (Main Image, Yellow Highlight Thumbnails, Product Dimensions Box) */}
         <div className="lg:col-span-6">
           <ProductGallery
             images={orbitProduct.images}
@@ -34,22 +35,28 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           />
         </div>
 
-        {/* Right Column (Info, Price, Variants, Buttons, Delivery) */}
+        {/* Right Column (Title, SKU, Description, Red Price, Key Features, Quantity, Yellow Buy Now Pill, Cart Button, Warranties) */}
         <div className="lg:col-span-6">
           <ProductInfo product={orbitProduct} />
         </div>
       </div>
 
-      {/* 3. Frequently Bought Together Bundle */}
+      {/* 3. Customer Reviews Section matching reference screenshot */}
+      <CustomerReviewsSection
+        rating={orbitProduct.rating}
+        reviewCount={orbitProduct.reviewCount}
+      />
+
+      {/* 4. Frequently Bought Together Bundle */}
       <FrequentlyBoughtTogether bundles={orbitProduct.frequentlyBoughtTogether} />
 
-      {/* 4. Sticky Product Tabs (Description, Specs, Reviews, Delivery, EMI, FAQs) */}
+      {/* 5. Sticky Product Tabs (Specs, Installation, FAQs) */}
       <ProductTabs product={orbitProduct} />
 
-      {/* 5. Similar Products Recommendation Grid */}
+      {/* 6. Similar Products Recommendation Grid */}
       <SimilarProducts />
 
-      {/* 6. Mobile Sticky CTA Bar */}
+      {/* 7. Mobile Sticky CTA Bar */}
       <MobileStickyBar product={orbitProduct} />
     </div>
   );
