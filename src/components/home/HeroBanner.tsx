@@ -3,41 +3,38 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronRight, ChevronLeft, ShieldCheck, Sparkles, ArrowRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
 
 const slides = [
   {
     id: 1,
-    title: 'Water Dispensers',
-    highlight: 'Premium Instant',
-    subtitle: 'Free delivery within 2 days across Addis Ababa',
-    description: 'Hot & cold water filtration systems engineered with low power consumption and durable stainless steel heating tanks.',
-    image: '/img/hero3.webp',
-    tag: 'Home & Office Essential',
-    ctaLink: '/#category-dispensers',
+    tag: 'TELEVISIONS IS ORBIT ELECTRONICS',
+    line1: 'Home',
+    line2: 'Appliances',
+    subtitle: 'Free delivery within 2 days',
+    image: '/img/hero1.jpeg',
+    ctaLink: '/#category-kitchen',
     ctaText: 'SHOP TODAY',
   },
   {
     id: 2,
-    title: 'Smart 4K UHD TVs',
-    highlight: 'Orbit 65"',
-    subtitle: 'Cinema-grade 4K visuals with Android TV OS',
-    description: 'Breathtaking 8.3 million pixels, HDR10+ dynamic contrast, and voice-controlled Google Assistant for ultimate home theater.',
-    image: '/img/hero1.jpeg',
-    tag: 'Top Rated Product',
+    tag: 'SMART ENTERTAINMENT SYSTEM',
+    line1: 'Smart 4K',
+    line2: 'Televisions',
+    subtitle: 'Free delivery within 2 days',
+    image: '/img/hero2.png',
     ctaLink: '/product/orbit-tv-65-smart-4k',
-    ctaText: 'EXPLORE SMART TV',
+    ctaText: 'SHOP TODAY',
   },
   {
     id: 3,
-    title: 'Washing Machines',
-    highlight: 'Smart Inverter',
-    subtitle: '12KG High efficiency twin & front load washers',
-    description: 'Experience deep eco-cleaning, 1400 RPM spin drying, and whisper-quiet motor performance backed by 2 years Orbit warranty.',
+    tag: 'HIGH EFFICIENCY ECO WASHERS',
+    line1: 'Washing',
+    line2: 'Machines',
+    subtitle: 'Free delivery within 2 days',
     image: '/img/product-washing1.jpeg',
-    tag: 'Best Energy Saver',
     ctaLink: '/#category-washers',
-    ctaText: 'SHOP WASHERS',
+    ctaText: 'SHOP TODAY',
   },
 ];
 
@@ -55,150 +52,101 @@ export const HeroBanner: React.FC = () => {
   const active = slides[currentSlide];
 
   return (
-    <section className="relative w-full h-[520px] sm:h-[600px] lg:h-[660px] bg-[#030E20] text-white overflow-hidden shadow-2xl">
-      {/* Background Image with Ambient Glow Effects */}
+    <section className="relative w-full h-[580px] sm:h-[640px] lg:h-[700px] bg-slate-950 text-white overflow-hidden select-none">
+      {/* Background Showroom Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src={active.image}
-          alt={active.title}
+          alt={active.line1 + ' ' + active.line2}
           fill
-          className="object-cover opacity-35 transition-all duration-1000 scale-105"
+          className="object-cover opacity-50 transition-all duration-1000 scale-105"
           priority
         />
-        {/* Cinematic Dual Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030E20] via-[#030E20]/90 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#030E20] via-transparent to-[#030E20]/50" />
+        {/* Subtle Dark Gradients for Text Legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/60 to-slate-950/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
       </div>
 
-      {/* Decorative Radial Lighting */}
-      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
-
-      {/* Full-width Corner-to-Corner Inner Container */}
-      <div className="relative z-10 max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center justify-between gap-8">
-        {/* Left Side Copy & Action Buttons */}
-        <div className="max-w-2xl space-y-6 pt-4">
-          {/* Glassmorphism Floating Pill Badge */}
-          <div className="inline-flex items-center gap-2 border border-amber-400/40 bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-full text-xs font-semibold text-slate-200 shadow-xl animate-pulse">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span className="text-amber-400 font-extrabold uppercase tracking-wider">{active.tag}</span>
-            <span className="text-slate-600">|</span>
-            <span>{active.subtitle}</span>
-          </div>
-
-          {/* Headline */}
-          <div className="space-y-2">
-            <div className="text-sm font-bold text-blue-400 uppercase tracking-widest">
-              Orbit Official Ethiopia Store
-            </div>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-extrabold tracking-tight text-white leading-[1.05]">
-              <span className="text-amber-400">{active.highlight}</span> {active.title}
-            </h1>
-          </div>
-
-          {/* Description */}
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl font-normal">
-            {active.description}
-          </p>
-
-          {/* Guarantee Badges */}
-          <div className="flex items-center gap-4 text-xs text-slate-300 pt-1">
-            <span className="flex items-center gap-1.5 font-medium">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" /> 2 Years Official Warranty
-            </span>
-            <span className="text-slate-700">|</span>
-            <span className="flex items-center gap-1.5 font-medium text-amber-300">
-              Telebirr & Chapa Express Pay
+      {/* Content Container (Matching Screenshot Pixel-for-Pixel) */}
+      <div className="relative z-10 max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center">
+        <div className="max-w-xl space-y-6 pt-6">
+          {/* Top Subtitle with Gold Line */}
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-[2px] bg-amber-400 shrink-0" />
+            <span className="text-xs font-bold text-slate-300 uppercase tracking-widest font-mono">
+              {active.tag}
             </span>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center gap-4 pt-3">
+          {/* Main Title: Elegant Serif in Light Sky Blue (#74B7E7) */}
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-serif tracking-tight leading-[0.95] text-[#74B7E7] font-normal drop-shadow-lg">
+            <span className="block">{active.line1}</span>
+            <span className="block">{active.line2}</span>
+          </h1>
+
+          {/* Delivery Box with Gold Border */}
+          <div className="inline-block border border-amber-400/60 bg-black/40 backdrop-blur-sm px-6 py-3 rounded-sm text-xs sm:text-sm text-slate-200 shadow-md">
+            {active.subtitle}
+          </div>
+
+          {/* Gold Rectangle CTA Button matching Screenshot ("SHOP TODAY ➔") */}
+          <div className="pt-2">
             <Link
               href={active.ctaLink}
-              className="inline-flex items-center gap-2.5 bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-8 py-4 rounded-xl text-xs uppercase tracking-wider transition-all hover:scale-105 shadow-glow-yellow"
+              className="inline-flex items-center gap-3 bg-[#E5C578] hover:bg-[#d8b668] text-slate-950 font-extrabold px-8 py-3.5 rounded-sm text-xs tracking-wider uppercase transition-all hover:scale-105 shadow-xl"
             >
               <span>{active.ctaText}</span>
-              <ChevronRight className="w-4 h-4 text-slate-950" />
-            </Link>
-
-            <Link
-              href="/#new-arrivals"
-              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-6 py-4 rounded-xl text-xs uppercase tracking-wider transition-all backdrop-blur"
-            >
-              <span>All Products</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-
-        {/* Right Side Featured Product Highlight Card (Desktop view) */}
-        <div className="hidden lg:flex relative w-[420px] aspect-square bg-slate-900/60 backdrop-blur-md rounded-3xl p-6 border border-slate-800 shadow-2xl items-center justify-center group overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-600/10 via-transparent to-amber-500/10 pointer-events-none" />
-
-          {/* Product Image */}
-          <div className="relative w-full h-full">
-            <Image
-              src={active.image}
-              alt={active.title}
-              fill
-              className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
-            />
-          </div>
-
-          {/* Floating Spec Badge */}
-          <div className="absolute bottom-6 left-6 right-6 bg-slate-950/90 border border-slate-800 p-3 rounded-2xl flex items-center justify-between text-xs backdrop-blur-md shadow-lg">
-            <div>
-              <div className="font-bold text-white">{active.title}</div>
-              <div className="text-[10px] text-amber-400 font-semibold">Genuine Orbit Certified</div>
-            </div>
-            <Link
-              href={active.ctaLink}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-3 py-1.5 rounded-lg text-[10px]"
-            >
-              VIEW
+              <ArrowRight className="w-4 h-4 text-slate-950" />
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Slide Navigation Bar at Bottom */}
-      <div className="absolute bottom-6 left-6 right-6 z-20 max-w-7xl mx-auto flex items-center justify-between">
-        {/* Slide Indicators */}
-        <div className="flex items-center gap-3 bg-slate-950/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-800">
-          {slides.map((s, idx) => (
-            <button
-              key={s.id}
-              onClick={() => setCurrentSlide(idx)}
-              className={`flex items-center gap-2 text-xs font-bold transition-all px-3 py-1 rounded-full ${
-                currentSlide === idx
-                  ? 'bg-amber-400 text-slate-950'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <span>0{s.id}</span>
-              {currentSlide === idx && <span className="hidden sm:inline font-black">{s.title}</span>}
-            </button>
-          ))}
+      {/* Bottom Progress Dash Indicators (Left Side) */}
+      <div className="absolute bottom-8 left-6 md:left-12 z-20 flex items-center gap-2">
+        {slides.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentSlide(idx)}
+            className={`h-0.5 transition-all duration-300 ${
+              currentSlide === idx ? 'w-10 bg-amber-400' : 'w-6 bg-slate-600 hover:bg-slate-400'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Bottom Controls & Counter (Right Side matching Screenshot "01 —— 06" and "< >") */}
+      <div className="absolute bottom-8 right-6 md:right-16 z-20 flex items-center gap-4 text-xs font-mono text-slate-300">
+        <div className="flex items-center gap-2 font-bold tracking-widest">
+          <span className="text-white">0{currentSlide + 1}</span>
+          <span className="text-slate-500">—</span>
+          <span className="text-slate-500">0{slides.length}</span>
         </div>
 
-        {/* Prev / Next Arrows */}
-        <div className="flex items-center gap-2 bg-slate-950/80 backdrop-blur-md p-1.5 rounded-full border border-slate-800">
+        {/* Square Navigation Arrows */}
+        <div className="flex items-center gap-1">
           <button
             onClick={() => setCurrentSlide((prev) => (prev > 0 ? prev - 1 : slides.length - 1))}
-            className="p-2 text-slate-300 hover:text-amber-400 hover:bg-slate-800 rounded-full transition-colors"
+            className="w-9 h-9 bg-slate-900/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-800 text-white flex items-center justify-center transition-colors"
             aria-label="Previous Slide"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={() => setCurrentSlide((prev) => (prev < slides.length - 1 ? prev + 1 : 0))}
-            className="p-2 text-slate-300 hover:text-amber-400 hover:bg-slate-800 rounded-full transition-colors"
+            className="w-9 h-9 bg-slate-900/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-800 text-white flex items-center justify-center transition-colors"
             aria-label="Next Slide"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4" />
           </button>
         </div>
+      </div>
+
+      {/* Far Right Vertical Scroll Indicator matching Screenshot */}
+      <div className="hidden lg:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 flex-col items-center gap-3 text-[10px] font-mono uppercase text-slate-400 tracking-widest pointer-events-none">
+        <span className="rotate-90 origin-center whitespace-nowrap">SCROLL</span>
+        <div className="w-[1px] h-12 bg-slate-600/60" />
       </div>
     </section>
   );

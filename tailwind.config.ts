@@ -2,7 +2,6 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -17,8 +16,7 @@ const config: Config = {
             600: "#2563eb",
             700: "#1d4ed8",
             800: "#1e40af",
-            900: "#1e3a8a",
-            950: "#0f172a",
+            900: "#0f172a",
           },
           yellow: {
             400: "#facc15",
