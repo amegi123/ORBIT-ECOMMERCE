@@ -79,3 +79,17 @@ body {
 .animate-progress {
   animation: progressAnim 1.8s ease-in-out infinite;
 }
+
+/* Ultra-Slow Ken Burns Hero Zoom Animation (14s) */
+@keyframes kenburnsZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.10);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburnsZoom 14s ease-out infinite alternate;
+}

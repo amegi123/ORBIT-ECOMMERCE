@@ -23,58 +23,59 @@ export const MobileBottomNav: React.FC = () => {
         {/* 1. Home Link */}
         <Link
           href="/"
-          className="flex flex-col items-center justify-center gap-0.5 text-slate-200 hover:text-amber-300 transition-colors py-1 px-3"
+          className="flex flex-col items-center justify-center gap-0.5 text-white hover:opacity-80 transition-opacity py-1 px-3"
         >
-          <Home className="w-5 h-5 text-slate-100" />
-          <span className="text-[10px] font-bold tracking-tight">Home</span>
+          <Home className="w-5 h-5 text-white" />
+          <span className="text-[10px] font-bold tracking-tight text-white">Home</span>
         </Link>
 
         {/* 2. Categories Link */}
         <Link
           href="/#category-tvs"
-          className="flex flex-col items-center justify-center gap-0.5 text-slate-200 hover:text-amber-300 transition-colors py-1 px-3"
+          className="flex flex-col items-center justify-center gap-0.5 text-white hover:opacity-80 transition-opacity py-1 px-3"
         >
-          <Grid className="w-5 h-5 text-slate-100" />
-          <span className="text-[10px] font-bold tracking-tight">Categories</span>
+          <Grid className="w-5 h-5 text-white" />
+          <span className="text-[10px] font-bold tracking-tight text-white">Categories</span>
         </Link>
 
         {/* 3. Call Hotline 6226 */}
         <a
           href="tel:6226"
-          className="flex flex-col items-center justify-center gap-0.5 py-1 px-3 text-amber-400 hover:text-amber-300 transition-colors"
+          className="flex flex-col items-center justify-center gap-0.5 py-1 px-3 text-white hover:opacity-80 transition-opacity"
         >
-          <div className="w-7 h-7 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center font-black shadow-md">
-            <Phone className="w-3.5 h-3.5" />
+          <div className="w-7 h-7 rounded-full bg-white text-[#02367B] flex items-center justify-center font-black shadow-md">
+            <Phone className="w-3.5 h-3.5 text-[#02367B]" />
           </div>
-          <span className="text-[10px] font-black tracking-tight text-amber-300">6226</span>
+          <span className="text-[10px] font-black tracking-tight text-white">6226</span>
         </a>
 
         {/* 4. Cart Button */}
         <button
           onClick={() => setIsCartOpen(true)}
-          className="relative flex flex-col items-center justify-center gap-0.5 text-slate-200 hover:text-amber-300 transition-colors py-1 px-3"
+          className="relative flex flex-col items-center justify-center gap-0.5 text-white hover:opacity-80 transition-opacity py-1 px-3"
           aria-label="Open Cart"
         >
           <div className="relative">
-            <ShoppingCart className="w-5 h-5 text-slate-100" />
+            <ShoppingCart className="w-5 h-5 text-white" />
             {totalCartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-amber-400 text-slate-950 text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-md">
+              <span className="absolute -top-2 -right-2 bg-white text-[#02367B] text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-md">
                 {totalCartCount}
               </span>
             )}
           </div>
-          <span className="text-[10px] font-bold tracking-tight">Cart</span>
+          <span className="text-[10px] font-bold tracking-tight text-white">Cart</span>
         </button>
 
         {/* 5. Account / Login Link */}
         <Link
           href="/login"
-          className="flex flex-col items-center justify-center gap-0.5 text-slate-200 hover:text-amber-300 transition-colors py-1 px-3"
+          className="flex flex-col items-center justify-center gap-0.5 text-white hover:opacity-80 transition-opacity py-1 px-3"
         >
-          <User className="w-5 h-5 text-slate-100" />
-          <span className="text-[10px] font-bold tracking-tight">Account</span>
+          <User className="w-5 h-5 text-white" />
+          <span className="text-[10px] font-bold tracking-tight text-white">Account</span>
         </Link>
       </div>
     </div>
   );
 };
+

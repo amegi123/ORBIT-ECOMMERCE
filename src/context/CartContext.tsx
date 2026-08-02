@@ -39,7 +39,7 @@ interface CartContextType {
   isAskQuestionOpen: boolean;
   setIsAskQuestionOpen: (open: boolean) => void;
   isPageNavigating: boolean;
-  setIsPageNavigating: (loading: boolean) => void;
+  triggerPageLoading: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -60,6 +60,15 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     setIsPageNavigating(false);
   }, [pathname]);
+
+  // Fast 600ms maximum duration trigger to prevent any stuck loading
+  const triggerPageLoading = () => {
+    setIsPageNavigating(true);
+    const timer = setTimeout(() => {
+      setIsPageNavigating(false);
+    }, 600);
+    return () => clearTimeout(timer);
+  };
 
   const addToast = (title: string, message: string, type: 'success' | 'info' | 'warning' = 'success') => {
     const id = Math.random().toString(36).substring(2, 9);
@@ -167,18 +176,18 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isAskQuestionOpen,
         setIsAskQuestionOpen,
         isPageNavigating,
-        setIsPageNavigating,
+        triggerPageLoading,
       }}
     >
       {children}
 
-      {/* Global Product Click Navigation Loader Overlay */}
+      {/* Global Product Click Fast Spinner Overlay */}
       {isPageNavigating && (
-        <div className="fixed inset-0 z-50 bg-white/90 backdrop-blur-sm flex flex-col items-center justify-center p-4 select-none font-sans">
+        <div className="fixed inset-0 z-50 bg-white/90 backdrop-blur-sm flex flex-col items-center justify-center p-4 select-none font-sans animate-in fade-in duration-200">
           <div className="flex flex-col items-center space-y-3">
             <div className="w-10 h-10 border-4 border-slate-200 border-t-[#02367B] rounded-full animate-spin" />
             <span className="text-xs font-bold text-slate-600 tracking-wider uppercase">
-              Loading Product Details...
+              Loading...
             </span>
           </div>
         </div>

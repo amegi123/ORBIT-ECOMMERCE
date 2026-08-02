@@ -91,10 +91,14 @@ export const SimilarProducts: React.FC = () => {
                   {prod.name}
                 </h4>
 
-                <div className="flex items-center gap-1 text-xs text-amber-500 font-semibold">
-                  <Star className="w-3.5 h-3.5 fill-amber-400" />
-                  <span className="text-slate-900 font-bold">{prod.rating}</span>
-                  <span className="text-slate-400">({prod.reviewCount})</span>
+                <div className="flex items-center gap-1 text-xs font-semibold">
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
+                    ))}
+                  </div>
+                  <span className="text-slate-900 font-bold text-[10px] ml-0.5">{prod.rating}.0</span>
+                  <span className="text-slate-400 text-[9px]">({prod.reviewCount})</span>
                 </div>
 
                 <div className="flex items-baseline gap-2 pt-1">

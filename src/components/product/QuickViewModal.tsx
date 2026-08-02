@@ -45,9 +45,13 @@ export const QuickViewModal: React.FC = () => {
               {quickViewProduct.name}
             </h3>
 
-            <div className="flex items-center gap-1 text-xs text-amber-500 font-semibold">
-              <Star className="w-4 h-4 fill-amber-400" />
-              <span className="text-slate-900 font-bold">{quickViewProduct.rating}</span>
+            <div className="flex items-center gap-1.5 text-xs font-semibold">
+              <div className="flex items-center gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                ))}
+              </div>
+              <span className="text-slate-900 font-bold ml-1">{quickViewProduct.rating}.0</span>
               <span className="text-slate-400">({quickViewProduct.reviewCount} reviews)</span>
             </div>
 

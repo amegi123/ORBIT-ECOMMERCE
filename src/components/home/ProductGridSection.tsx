@@ -28,11 +28,11 @@ export const ProductGridSection: React.FC<ProductGridSectionProps> = ({
   centeredTitle = false,
 }) => {
   const router = useRouter();
-  const { addToCart, setQuickViewProduct, setIsPageNavigating } = useCart();
+  const { addToCart, setQuickViewProduct, triggerPageLoading } = useCart();
 
   const handleProductClick = (e: React.MouseEvent, prodId: string) => {
     e.preventDefault();
-    setIsPageNavigating(true);
+    triggerPageLoading();
     router.push(`/product/${prodId}`);
   };
 
@@ -94,7 +94,7 @@ export const ProductGridSection: React.FC<ProductGridSectionProps> = ({
               )}
             </h2>
           </div>
-          <Link href="#all-products" className="text-xs text-[#02367B] font-bold hover:underline">
+          <Link href="/all-products" className="text-xs text-[#02367B] font-bold hover:underline">
             View All
           </Link>
         </div>
@@ -177,8 +177,12 @@ export const ProductGridSection: React.FC<ProductGridSectionProps> = ({
             {/* Rating & Price */}
             <div className="pt-2 sm:pt-3 space-y-2 border-t border-slate-100 mt-2">
               <div className="flex items-center gap-1">
-                <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                <span className="text-[10px] font-bold text-slate-700">{prod.rating}</span>
+                <div className="flex items-center gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
+                  ))}
+                </div>
+                <span className="text-[10px] font-bold text-slate-700 ml-0.5">{prod.rating}.0</span>
                 <span className="text-[9px] text-slate-400">({prod.reviewCount})</span>
               </div>
 
