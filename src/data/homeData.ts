@@ -21,37 +21,37 @@ export const homeCategories: HomeCategory[] = [
   {
     id: 'category-tvs',
     name: 'Televisions',
-    image: '/img/hero1.jpeg',
+    image: '/img/catgories1.webp',
     itemCount: 24,
   },
   {
     id: 'category-fridges',
     name: 'Refrigerators',
-    image: '/img/hero2.png',
+    image: '/img/catagories2.webp',
     itemCount: 18,
   },
   {
     id: 'category-washers',
     name: 'Washing Machines',
-    image: '/img/product-washing1.jpeg',
+    image: '/img/catagories3.jpeg',
     itemCount: 32,
   },
   {
     id: 'category-stoves',
     name: 'Stoves',
-    image: '/img/product-washing2.jpeg',
+    image: '/img/catagories4.webp',
     itemCount: 15,
   },
   {
     id: 'category-dispensers',
     name: 'Water Dispensers',
-    image: '/img/hero3.webp',
+    image: '/img/hero1.jpeg',
     itemCount: 12,
   },
   {
     id: 'category-kitchen',
     name: 'Kitchenware',
-    image: '/img/product-washing4.jpeg',
+    image: '/img/hero3.webp',
     itemCount: 28,
   },
 ];
@@ -65,7 +65,7 @@ export const newArrivals: HomeProduct[] = [
     oldPrice: 39000,
     rating: 5,
     reviewCount: 14,
-    image: '/img/product-washing2.jpeg',
+    image: '/img/stoves50X50.jpeg',
   },
   {
     id: '10kg-manual-washer',
@@ -95,7 +95,7 @@ export const newArrivals: HomeProduct[] = [
     oldPrice: 110000,
     rating: 5,
     reviewCount: 128,
-    image: '/img/hero1.jpeg',
+    image: '/img/android20orbit65.webp',
   },
 ];
 
@@ -108,7 +108,7 @@ export const bestSellers: HomeProduct[] = [
     oldPrice: 130000,
     rating: 5,
     reviewCount: 38,
-    image: '/img/hero2.png',
+    image: '/img/550a_compressed.webp',
   },
   {
     id: 'commercial-double-oven',
@@ -128,7 +128,7 @@ export const bestSellers: HomeProduct[] = [
     oldPrice: 42000,
     rating: 5,
     reviewCount: 27,
-    image: '/img/product-washing2.jpeg',
+    image: '/img/stoves50X50.jpeg',
   },
   {
     id: 'electric-builtin-oven',
@@ -138,7 +138,7 @@ export const bestSellers: HomeProduct[] = [
     oldPrice: 65000,
     rating: 5,
     reviewCount: 16,
-    image: '/img/product-washing4.jpeg',
+    image: '/img/stoves-full-electric.webp',
   },
   {
     id: 'double-door-fridge-350l',
@@ -148,7 +148,7 @@ export const bestSellers: HomeProduct[] = [
     oldPrice: 88000,
     rating: 5,
     reviewCount: 44,
-    image: '/img/hero2.png',
+    image: '/img/sleek-stainless-steel-french-door-refrigerator.avif',
   },
 ];
 
@@ -161,7 +161,7 @@ export const bundlesOfTheWeek: HomeProduct[] = [
     oldPrice: 58000,
     rating: 5,
     reviewCount: 18,
-    image: '/img/hero3.webp',
+    image: '/img/water1_compressed.webp',
   },
   {
     id: 'bundle-washer-iron',
@@ -181,7 +181,7 @@ export const bundlesOfTheWeek: HomeProduct[] = [
     oldPrice: 72000,
     rating: 5,
     reviewCount: 14,
-    image: '/img/product-washing4.jpeg',
+    image: '/img/stoves-full-electric.webp',
   },
   {
     id: 'bundle-fridge-microwave',
@@ -191,7 +191,7 @@ export const bundlesOfTheWeek: HomeProduct[] = [
     oldPrice: 104000,
     rating: 5,
     reviewCount: 31,
-    image: '/img/hero2.png',
+    image: '/img/550a_compressed.webp',
   },
   {
     id: 'bundle-tv-soundbar-mount',
@@ -201,7 +201,7 @@ export const bundlesOfTheWeek: HomeProduct[] = [
     oldPrice: 136500,
     rating: 5,
     reviewCount: 42,
-    image: '/img/hero1.jpeg',
+    image: '/img/android20orbit65.webp',
   },
 ];
 
@@ -214,7 +214,7 @@ export const recommendedProducts: HomeProduct[] = [
     oldPrice: 48000,
     rating: 5,
     reviewCount: 23,
-    image: '/img/product-washing2.jpeg',
+    image: '/img/stoves50X50.jpeg',
   },
   {
     id: 'frontload-washer-dryer-12kg',
@@ -234,7 +234,7 @@ export const recommendedProducts: HomeProduct[] = [
     oldPrice: 110000,
     rating: 5,
     reviewCount: 128,
-    image: '/img/hero1.jpeg',
+    image: '/img/android20orbit65.webp',
   },
   {
     id: 'wireless-subwoofer-soundbar',
@@ -277,7 +277,7 @@ export const trendingProducts: HomeProduct[] = [
     oldPrice: 85000,
     rating: 5,
     reviewCount: 94,
-    image: '/img/hero2.png',
+    image: '/img/smart204320hd.webp',
   },
   {
     id: 'orbit-tv-65-smart-4k',
@@ -287,6 +287,6 @@ export const trendingProducts: HomeProduct[] = [
     oldPrice: 110000,
     rating: 5,
     reviewCount: 128,
-    image: '/img/hero1.jpeg',
+    image: '/img/android20orbit65.webp',
   },
 ];

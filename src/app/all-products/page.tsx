@@ -30,7 +30,7 @@ const allProductsData: ProductItem[] = [
     oldPrice: 65000,
     rating: 5,
     reviewCount: 1,
-    image: '/img/hero2.png',
+    image: '/img/550a_compressed.webp',
   },
   {
     id: 'refrigerator-740',
@@ -41,7 +41,7 @@ const allProductsData: ProductItem[] = [
     oldPrice: 72000,
     rating: 5,
     reviewCount: 3,
-    image: '/img/hero2.png',
+    image: '/img/showcase660a.webp',
     isOutOfStock: true,
   },
   {
@@ -53,7 +53,7 @@ const allProductsData: ProductItem[] = [
     oldPrice: 58000,
     rating: 5,
     reviewCount: 2,
-    image: '/img/hero2.png',
+    image: '/img/sleek-stainless-steel-french-door-refrigerator.avif',
   },
   {
     id: 'normal-730-refrigerator',
@@ -64,7 +64,7 @@ const allProductsData: ProductItem[] = [
     oldPrice: 68000,
     rating: 5,
     reviewCount: 4,
-    image: '/img/hero2.png',
+    image: '/img/deepfreez900b.webp',
   },
   {
     id: 'orbit-tv-65-smart-4k',
@@ -75,7 +75,7 @@ const allProductsData: ProductItem[] = [
     oldPrice: 110000,
     rating: 5,
     reviewCount: 128,
-    image: '/img/hero1.jpeg',
+    image: '/img/android20orbit65.webp',
   },
   {
     id: 'orbit-tv-55-smart-4k',
@@ -86,7 +86,7 @@ const allProductsData: ProductItem[] = [
     oldPrice: 85000,
     rating: 5,
     reviewCount: 94,
-    image: '/img/hero1.jpeg',
+    image: '/img/smart204320hd.webp',
   },
   {
     id: '10kg-manual-washer',
@@ -119,7 +119,7 @@ const allProductsData: ProductItem[] = [
     oldPrice: 39000,
     rating: 5,
     reviewCount: 14,
-    image: '/img/product-washing2.jpeg',
+    image: '/img/stoves50X50.jpeg',
   },
   {
     id: 'builtin-gas-stove-pro',
@@ -130,7 +130,7 @@ const allProductsData: ProductItem[] = [
     oldPrice: 48000,
     rating: 5,
     reviewCount: 23,
-    image: '/img/product-washing2.jpeg',
+    image: '/img/stoves-full-electric.webp',
   },
   {
     id: 'water-dispenser-hot-cold',
@@ -141,7 +141,7 @@ const allProductsData: ProductItem[] = [
     oldPrice: 22000,
     rating: 5,
     reviewCount: 18,
-    image: '/img/hero3.webp',
+    image: '/img/water1_compressed.webp',
   },
   {
     id: 'commercial-double-oven',
