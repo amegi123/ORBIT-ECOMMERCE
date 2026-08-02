@@ -84,7 +84,7 @@ export const HeroBanner: React.FC = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
-      className="relative w-full h-[580px] sm:h-[640px] lg:h-[700px] bg-slate-950 text-white overflow-hidden select-none lg:cursor-none"
+      className="relative w-full h-[660px] sm:h-[740px] lg:h-[800px] bg-slate-950 text-white overflow-hidden select-none lg:cursor-none"
     >
       {/* Synchronized Hero Slides Container (Images + Text + Buttons Slide Together) */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -122,7 +122,7 @@ export const HeroBanner: React.FC = () => {
 
               {/* Synchronized Text & Button Content Container */}
               <div className="relative z-10 max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center">
-                <div className="max-w-xl space-y-6 pt-6">
+                <div className="max-w-xl space-y-5 sm:space-y-6 -mt-12 sm:-mt-16 lg:-mt-20">
                   {/* Tagline */}
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-[2px] bg-amber-400 shrink-0" />

@@ -463,7 +463,7 @@ export default function AllProductsPage() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {filteredProducts.map((prod) => {
                 const isInCompare = compareList.some((p) => p.id === prod.id);
 
@@ -471,7 +471,7 @@ export default function AllProductsPage() {
                   <div
                     key={prod.id}
                     onClick={() => handleProductClick(prod.id)}
-                    className="group bg-white rounded-2xl border border-slate-200/90 p-3.5 flex flex-col justify-between hover:shadow-xl hover:border-[#02367B] transition-all duration-300 cursor-pointer relative"
+                    className="group bg-white rounded-2xl border border-slate-200/90 p-2.5 sm:p-3.5 flex flex-col justify-between hover:shadow-xl hover:border-[#02367B] transition-all duration-300 cursor-pointer relative"
                   >
                     <div>
                       {/* Top Action Row: Category & Compare Button */}
@@ -495,12 +495,12 @@ export default function AllProductsPage() {
                           title={isInCompare ? 'Remove from Comparison' : 'Add to Comparison'}
                         >
                           <ArrowLeftRight className="w-3 h-3" />
-                          <span>{isInCompare ? 'Comparing' : 'Compare'}</span>
+                          <span className="hidden sm:inline">{isInCompare ? 'Comparing' : 'Compare'}</span>
                         </button>
                       </div>
 
                       {/* Product Image Showcase */}
-                      <div className="relative w-full h-44 bg-white rounded-xl p-2 mb-2 flex items-center justify-center overflow-hidden">
+                      <div className="relative w-full h-32 sm:h-44 bg-white rounded-xl p-1.5 sm:p-2 mb-2 flex items-center justify-center overflow-hidden">
                         <Image
                           src={prod.image}
                           alt={prod.name}
