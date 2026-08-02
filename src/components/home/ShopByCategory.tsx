@@ -75,12 +75,43 @@ export const ShopByCategory: React.FC = () => {
         </div>
       </div>
 
-      {/* Auto Slide Carousel Container */}
+      {/* MOBILE: Native Touch Horizontal Scroll Container (Scrollable by hand on phones) */}
+      <div className="flex sm:hidden overflow-x-auto scrollbar-none touch-pan-x gap-3 py-1 px-0.5 scroll-smooth">
+        {homeCategories.map((cat) => (
+          <Link
+            key={cat.id}
+            href={`/all-products?category=${encodeURIComponent(cat.name)}`}
+            className="group shrink-0 w-32 bg-white rounded-2xl border border-slate-200/80 p-2.5 flex flex-col items-center justify-between hover:border-[#02367B] hover:shadow-md transition-all duration-300 relative"
+          >
+            {/* Image Container */}
+            <div className="relative w-full aspect-square bg-slate-50/60 rounded-xl p-2 flex items-center justify-center overflow-hidden mb-2">
+              <Image
+                src={cat.image}
+                alt={cat.name}
+                fill
+                className="object-contain p-1.5 group-hover:scale-105 transition-transform duration-300 ease-out"
+              />
+            </div>
+
+            {/* Category Info */}
+            <div className="w-full text-center space-y-0.5">
+              <h3 className="text-[11px] font-bold text-slate-900 group-hover:text-[#02367B] transition-colors truncate">
+                {cat.name}
+              </h3>
+              <p className="text-[9px] font-medium text-slate-400">
+                {cat.itemCount} Items
+              </p>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* DESKTOP: Auto-Sliding Carousel Container */}
       <div
         ref={sliderRef}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="relative w-full overflow-hidden py-1"
+        className="hidden sm:block relative w-full overflow-hidden py-1"
       >
         <div
           className="flex transition-transform duration-500 ease-out gap-3 sm:gap-4"
@@ -93,7 +124,7 @@ export const ShopByCategory: React.FC = () => {
             <Link
               key={`${cat.id}-${idx}`}
               href={`/all-products?category=${encodeURIComponent(cat.name)}`}
-              className="group shrink-0 w-[calc(50%-6px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-12px)] lg:w-[calc(20%-13px)] bg-white rounded-2xl border border-slate-200/80 p-3.5 flex flex-col items-center justify-between hover:border-[#02367B] hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative"
+              className="group shrink-0 w-[calc(33.333%-11px)] md:w-[calc(25%-12px)] lg:w-[calc(20%-13px)] bg-white rounded-2xl border border-slate-200/80 p-3.5 flex flex-col items-center justify-between hover:border-[#02367B] hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative"
             >
               {/* Image Container */}
               <div className="relative w-full aspect-square bg-slate-50/60 rounded-xl p-2 flex items-center justify-center overflow-hidden mb-2.5">

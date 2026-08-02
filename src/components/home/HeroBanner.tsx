@@ -121,18 +121,19 @@ export const HeroBanner: React.FC = () => {
               </div>
 
               {/* Synchronized Text & Button Content Container */}
-              <div className="relative z-10 max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center">
-                <div className="max-w-xl space-y-5 sm:space-y-6 -mt-12 sm:-mt-16 lg:-mt-20">
+              <div className="relative z-10 max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center justify-center sm:justify-start">
+                <div className="max-w-xl space-y-5 sm:space-y-6 -mt-12 sm:-mt-16 lg:-mt-20 text-center sm:text-left flex flex-col items-center sm:items-start">
                   {/* Tagline */}
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-center sm:justify-start gap-3">
                     <div className="w-8 h-[2px] bg-amber-400 shrink-0" />
                     <span className="text-xs font-bold text-[#46D3E4] uppercase tracking-widest font-mono">
                       {slide.tag}
                     </span>
+                    <div className="w-8 h-[2px] bg-amber-400 shrink-0 sm:hidden" />
                   </div>
 
                   {/* Main Title */}
-                  <h1 className="text-5xl sm:text-7xl lg:text-8xl font-serif tracking-tight leading-[0.95] text-[#46D3E4] font-normal drop-shadow-lg">
+                  <h1 className="text-4xl sm:text-7xl lg:text-8xl font-serif tracking-tight leading-[0.95] text-[#46D3E4] font-normal drop-shadow-lg text-center sm:text-left">
                     <span className="block">{slide.line1}</span>
                     <span className="block">{slide.line2}</span>
                   </h1>
@@ -143,10 +144,10 @@ export const HeroBanner: React.FC = () => {
                   </div>
 
                   {/* CTA Button */}
-                  <div className="pt-2">
+                  <div className="pt-2 flex justify-center sm:justify-start w-full">
                     <Link
                       href={slide.ctaLink}
-                      className="inline-flex items-center gap-3 bg-[#E5C578] hover:bg-[#d8b668] text-slate-950 font-extrabold px-8 py-3.5 rounded-sm text-xs tracking-wider uppercase transition-all hover:scale-105 shadow-xl cursor-pointer z-20"
+                      className="inline-flex items-center justify-center gap-3 bg-[#E5C578] hover:bg-[#d8b668] text-slate-950 font-extrabold px-8 py-3.5 rounded-sm text-xs tracking-wider uppercase transition-all hover:scale-105 shadow-xl cursor-pointer z-20"
                     >
                       <span>{slide.ctaText}</span>
                       <ArrowRight className="w-4 h-4 text-slate-950" />
