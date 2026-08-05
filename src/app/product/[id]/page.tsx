@@ -1,7 +1,6 @@
 import { Breadcrumb } from '@/components/product/Breadcrumb';
 import { ProductGallery } from '@/components/product/ProductGallery';
 import { ProductInfo } from '@/components/product/ProductInfo';
-import { CustomerReviewsSection } from '@/components/product/CustomerReviewsSection';
 import { ProductTabs } from '@/components/product/ProductTabs';
 import { SimilarProducts } from '@/components/product/SimilarProducts';
 import { MobileStickyBar } from '@/components/product/MobileStickyBar';
@@ -57,13 +56,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      {/* 3. Customer Reviews Section */}
-      <CustomerReviewsSection
-        rating={product.rating}
-        reviewCount={product.reviewCount}
-      />
-
-      {/* 5. Sticky Product Tabs (Specs, Installation, FAQs) */}
+      {/* 3. Product Tabs & Customer Reviews */}
       <ProductTabs product={product} />
 
       {/* 6. Similar Products Recommendation Grid */}

@@ -11,8 +11,6 @@ import { AskQuestionModal } from '@/components/product/AskQuestionModal';
 import { QuickViewModal } from '@/components/product/QuickViewModal';
 import { FloatingActionButton } from '@/components/FloatingActionButton';
 import { LanguageSelectionModal } from '@/components/LanguageSelectionModal';
-import { AiAssistantModal } from '@/components/AiAssistantModal';
-
 
 export const metadata: Metadata = {
   title: 'Orbit Electronics Ethiopia | Smart 4K TVs, Appliances & Dispensers',
@@ -47,7 +45,6 @@ export default function RootLayout({
           <FloatingActionButton />
 
           <LanguageSelectionModal />
-          <AiAssistantModal />
           <ToastContainer />
           <CartDrawer />
           <ProductComparison />

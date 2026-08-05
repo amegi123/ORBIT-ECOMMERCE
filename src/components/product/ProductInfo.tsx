@@ -179,8 +179,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
 
         {savingsAmount > 0 && (
           <div className="flex items-center gap-2 pt-1">
-            <span className="bg-[#02367B] text-white font-extrabold text-xs px-3 py-1 rounded-full shadow-xs flex items-center gap-1">
-              <Sparkles className="w-3 h-3 fill-amber-400 text-amber-400" />
+            <span className="bg-[#02367B] text-white font-extrabold text-xs px-3 py-1 rounded-full shadow-xs flex items-center">
               SAVE {product.discountPercentage || 15}% ({savingsAmount.toLocaleString()} ETB OFF)
             </span>
           </div>
