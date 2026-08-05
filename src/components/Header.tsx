@@ -75,12 +75,11 @@ const USFlag: React.FC<{ className?: string }> = ({ className = "w-5 h-3.5" }) =
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
-  const { cart, setIsCartOpen } = useCart();
+  const { cart, setIsCartOpen, language, setIsLanguageModalOpen } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [currentLang, setCurrentLang] = useState<'am' | 'en'>('am');
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
 
   const searchSuggestions = [
@@ -164,7 +163,7 @@ export const Header: React.FC = () => {
               src="/img/Orbi logo.svg"
               alt="Orbit Electronics Logo"
               fill
-              className="object-contain object-left drop-shadow-md"
+              className="object-contain object-left"
               priority
             />
           </div>
@@ -204,14 +203,16 @@ export const Header: React.FC = () => {
             <span>6226</span>
           </a>
 
-          {/* Language Flip Button */}
+          {/* Language Selection Trigger Button */}
           <button
-            onClick={() => setCurrentLang(currentLang === 'am' ? 'en' : 'am')}
+            onClick={() => setIsLanguageModalOpen(true)}
             className="flex items-center gap-1.5 bg-[#002B66] hover:bg-[#001F4C] px-2.5 py-1 rounded border border-[#005BAA] font-bold text-white cursor-pointer transition-all active:scale-95 shadow-xs"
-            title="Flip Language (አማርኛ / English)"
+            title="Change Language / ቋንቋ ይምረጡ"
           >
-            {currentLang === 'am' ? <EthiopiaFlag className="w-4 h-3" /> : <USFlag className="w-4 h-3" />}
-            <span className="text-white text-xs select-none">{currentLang === 'am' ? 'አማርኛ' : 'English'}</span>
+            {language === 'am' ? <EthiopiaFlag className="w-4 h-3" /> : <USFlag className="w-4 h-3" />}
+            <span className="text-white text-xs select-none">
+              {language === 'am' ? 'አማርኛ' : language === 'om' ? 'Oromoo' : language === 'ti' ? 'ትግርኛ' : language === 'so' ? 'Soomaali' : 'English'}
+            </span>
           </button>
 
           {/* Login / Register White Pill Button */}
@@ -307,11 +308,16 @@ export const Header: React.FC = () => {
 
             {/* Mobile Language Selector with Flag */}
             <button
-              onClick={() => setCurrentLang(currentLang === 'am' ? 'en' : 'am')}
-              className="flex items-center gap-1.5 bg-[#02367B] px-2.5 py-1 rounded border border-white/20 text-white font-bold hover:bg-[#02367B]/80 transition-colors"
+              onClick={() => {
+                setIsLanguageModalOpen(true);
+                setMobileMenuOpen(false);
+              }}
+              className="flex items-center gap-1.5 bg-[#02367B] px-2.5 py-1 rounded border border-white/20 text-white font-bold hover:bg-[#02367B]/80 transition-colors cursor-pointer"
             >
-              {currentLang === 'am' ? <EthiopiaFlag className="w-4 h-3" /> : <USFlag className="w-4 h-3" />}
-              <span className="text-white">{currentLang === 'am' ? 'አማርኛ' : 'English'}</span>
+              {language === 'am' ? <EthiopiaFlag className="w-4 h-3" /> : <USFlag className="w-4 h-3" />}
+              <span className="text-white">
+                {language === 'am' ? 'አማርኛ' : language === 'om' ? 'Oromoo' : language === 'ti' ? 'ትግርኛ' : language === 'so' ? 'Soomaali' : 'English'}
+              </span>
             </button>
           </div>
         </div>

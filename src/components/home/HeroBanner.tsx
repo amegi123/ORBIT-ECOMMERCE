@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCart } from '@/context/CartContext';
 import { ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
 
 const slides = [
@@ -39,6 +40,7 @@ const slides = [
 ];
 
 export const HeroBanner: React.FC = () => {
+  const { triggerPageLoading } = useCart();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // Smooth Orbit Brand Blue Cursor Tracking (Lerp Physics)
@@ -147,6 +149,11 @@ export const HeroBanner: React.FC = () => {
                   <div className="pt-2 flex justify-center sm:justify-start w-full">
                     <Link
                       href={slide.ctaLink}
+                      onClick={() => {
+                        if (slide.ctaLink.startsWith('/product/')) {
+                          triggerPageLoading();
+                        }
+                      }}
                       className="inline-flex items-center justify-center gap-3 bg-[#E5C578] hover:bg-[#d8b668] text-slate-950 font-extrabold px-8 py-3.5 rounded-sm text-xs tracking-wider uppercase transition-all hover:scale-105 shadow-xl cursor-pointer z-20"
                     >
                       <span>{slide.ctaText}</span>

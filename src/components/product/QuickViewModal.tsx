@@ -2,11 +2,13 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
-import { X, Star, ShoppingBag, CheckCircle } from 'lucide-react';
+import { X, Star, ShoppingBag, CheckCircle, ExternalLink } from 'lucide-react';
 
 export const QuickViewModal: React.FC = () => {
-  const { quickViewProduct, setQuickViewProduct, addToCart } = useCart();
+  const router = useRouter();
+  const { quickViewProduct, setQuickViewProduct, addToCart, triggerPageLoading } = useCart();
 
   if (!quickViewProduct) return null;
 
@@ -73,15 +75,29 @@ export const QuickViewModal: React.FC = () => {
               <CheckCircle className="w-4 h-4" /> Free Same-Day Addis Ababa Delivery
             </div>
 
-            <button
-              onClick={() => {
-                addToCart(quickViewProduct);
-                setQuickViewProduct(null);
-              }}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 shadow"
-            >
-              <ShoppingBag className="w-4 h-4" /> Add to Cart
-            </button>
+            <div className="space-y-2 pt-1">
+              <button
+                onClick={() => {
+                  addToCart(quickViewProduct);
+                  setQuickViewProduct(null);
+                }}
+                className="w-full bg-[#02367B] hover:bg-[#012759] text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 shadow cursor-pointer transition-colors"
+              >
+                <ShoppingBag className="w-4 h-4" /> Add to Cart
+              </button>
+
+              <button
+                onClick={() => {
+                  const prodId = quickViewProduct.id;
+                  setQuickViewProduct(null);
+                  triggerPageLoading();
+                  router.push(`/product/${prodId}`);
+                }}
+                className="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+              >
+                <ExternalLink className="w-4 h-4 text-slate-600" /> View Full Product Details
+              </button>
+            </div>
           </div>
         </div>
       </div>

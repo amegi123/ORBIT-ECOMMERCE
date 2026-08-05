@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Product } from '@/types/product';
 import { useCart } from '@/context/CartContext';
-import { ShoppingCart, Minus, Plus } from 'lucide-react';
+import { ShoppingCart, Minus, Plus, Truck, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 interface ProductInfoProps {
   product: Product;
@@ -120,13 +120,17 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
       </div>
 
       {/* Key Features Section matching 2-column screenshot layout */}
-      <div className="space-y-3">
-        <h3 className="text-sm font-bold text-slate-900">Key Features</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-xs text-slate-600">
+      <div className="space-y-3 p-4 rounded-2xl bg-slate-50/80 border border-slate-100/80">
+        <h3 className="text-xs font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
+          <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Key Features
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-4 text-xs text-slate-700 font-medium">
           {keyFeaturesList.map((feat, idx) => (
-            <div key={idx} className="flex items-start gap-2">
-              <span className="text-slate-400 select-none">•</span>
-              <span>{feat}</span>
+            <div key={idx} className="flex items-start gap-2.5 group">
+              <div className="w-4 h-4 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-xs">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+              </div>
+              <span className="leading-snug text-slate-800">{feat}</span>
             </div>
           ))}
         </div>
@@ -174,13 +178,25 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
       </div>
 
       {/* Guarantee Footer Info matching screenshot */}
-      <div className="border-t border-slate-100 pt-6 grid grid-cols-2 gap-4 text-xs">
-        <div>
-          <div className="font-bold text-slate-800">FREE Delivery within 2 days</div>
+      <div className="border-t border-slate-100 pt-6 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-blue-50/60 border border-blue-100/80 transition-all hover:bg-blue-50 hover:shadow-sm group">
+          <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
+            <Truck className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="text-xs font-extrabold text-slate-900 leading-snug">FREE Delivery</div>
+            <div className="text-[11px] font-semibold text-blue-700">within 2 days</div>
+          </div>
         </div>
-        <div>
-          <div className="font-bold text-slate-800">2-Year Warranty</div>
-          <div className="text-[10px] text-slate-400">Full Product Coverage</div>
+
+        <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-100/80 transition-all hover:bg-emerald-50 hover:shadow-sm group">
+          <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+            <ShieldCheck className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="text-xs font-extrabold text-slate-900 leading-snug">2-Year Warranty</div>
+            <div className="text-[11px] font-semibold text-emerald-700">Full Product Coverage</div>
+          </div>
         </div>
       </div>
     </div>

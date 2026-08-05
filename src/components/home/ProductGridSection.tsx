@@ -188,11 +188,11 @@ export const ProductGridSection: React.FC<ProductGridSectionProps> = ({
 
               <div className="flex items-center justify-between gap-1">
                 <div>
-                  <div className="text-xs sm:text-base font-black text-slate-900 leading-none">
+                  <div className="text-sm sm:text-base font-medium text-slate-900 leading-none">
                     {prod.price.toLocaleString()} ETB
                   </div>
                   {prod.oldPrice && (
-                    <div className="text-[10px] text-slate-400 line-through">
+                    <div className="text-xs text-red-600 line-through font-medium mt-0.5">
                       {prod.oldPrice.toLocaleString()} ETB
                     </div>
                   )}

@@ -3,9 +3,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, ArrowLeft } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
 
 export default function LoginPage() {
+  const router = useRouter();
+  const { addToast } = useCart();
   const [showPassword, setShowPassword] = useState(false);
   const [emailOrPhone, setEmailOrPhone] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +17,17 @@ export default function LoginPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Logged in successfully!');
+    addToast('Success', 'Logged in successfully!', 'success');
+    setTimeout(() => {
+      router.push('/');
+    }, 700);
+  };
+
+  const handleGoogleLogin = () => {
+    addToast('Success', 'Logged in successfully with Google!', 'success');
+    setTimeout(() => {
+      router.push('/');
+    }, 700);
   };
 
   return (
@@ -141,7 +155,7 @@ export default function LoginPage() {
         {/* Sign in with Google Button */}
         <button
           type="button"
-          onClick={() => alert('Signing in with Google...')}
+          onClick={handleGoogleLogin}
           className="w-full bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs py-3 rounded-xl border border-slate-300 shadow-xs hover:shadow-md transition-all flex items-center justify-center gap-2.5 cursor-pointer"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24">

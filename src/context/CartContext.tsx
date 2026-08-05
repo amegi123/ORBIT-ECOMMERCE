@@ -40,6 +40,10 @@ interface CartContextType {
   setIsAskQuestionOpen: (open: boolean) => void;
   isPageNavigating: boolean;
   triggerPageLoading: () => void;
+  language: string;
+  setLanguage: (lang: string) => void;
+  isLanguageModalOpen: boolean;
+  setIsLanguageModalOpen: (open: boolean) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -55,18 +59,43 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isCompareOpen, setIsCompareOpen] = useState(false);
   const [isAskQuestionOpen, setIsAskQuestionOpen] = useState(false);
   const [isPageNavigating, setIsPageNavigating] = useState(false);
+  const [language, setLanguageState] = useState<string>('en');
+  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
+
+  // Check first-time language selection from localStorage on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedLang = localStorage.getItem('orbit_language');
+      if (savedLang) {
+        setLanguageState(savedLang);
+      } else {
+        // First-time browser visit: show language selection modal
+        setIsLanguageModalOpen(true);
+      }
+    }
+  }, []);
+
+  const setLanguage = (lang: string) => {
+    setLanguageState(lang);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('orbit_language', lang);
+    }
+  };
 
   // Automatically reset navigation loading spinner when route changes
   useEffect(() => {
     setIsPageNavigating(false);
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
   }, [pathname]);
 
-  // Fast 600ms maximum duration trigger to prevent any stuck loading
+  // Keep loading spinner active until pathname changes, with 5s safety fallback
   const triggerPageLoading = () => {
     setIsPageNavigating(true);
     const timer = setTimeout(() => {
       setIsPageNavigating(false);
-    }, 600);
+    }, 5000);
     return () => clearTimeout(timer);
   };
 
@@ -177,6 +206,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setIsAskQuestionOpen,
         isPageNavigating,
         triggerPageLoading,
+        language,
+        setLanguage,
+        isLanguageModalOpen,
+        setIsLanguageModalOpen,
       }}
     >
       {children}

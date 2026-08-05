@@ -541,11 +541,11 @@ export default function AllProductsPage() {
                     <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-1">
                       <div>
                         {prod.oldPrice && (
-                          <div className="text-[10px] text-slate-400 line-through">
+                          <div className="text-xs text-red-600 line-through font-medium">
                             {prod.oldPrice.toLocaleString()} ETB
                           </div>
                         )}
-                        <div className="text-xs sm:text-sm font-black text-red-600">
+                        <div className="text-sm sm:text-base font-medium text-slate-900">
                           {prod.price.toLocaleString()} ETB
                         </div>
                         {prod.isOutOfStock && (

@@ -1,6 +1,8 @@
 import { HeroBanner } from '@/components/home/HeroBanner';
 import { ShopByCategory } from '@/components/home/ShopByCategory';
+import { DealAndLatestProducts } from '@/components/home/DealAndLatestProducts';
 import { ProductGridSection } from '@/components/home/ProductGridSection';
+import { AudioPromoBanner } from '@/components/home/AudioPromoBanner';
 import {
   newArrivals,
   bestSellers,
@@ -20,6 +22,9 @@ export default function HomePage() {
         {/* Shop by Category Grid */}
         <ShopByCategory />
 
+        {/* Deal of the Day & Latest Products Section (Matches reference image) */}
+        <DealAndLatestProducts />
+
         {/* New Arrivals (Centered title + Subtitle) */}
         <ProductGridSection
           id="new-arrivals"
@@ -38,6 +43,9 @@ export default function HomePage() {
           products={bestSellers}
           columns={5}
         />
+
+        {/* Audio Promo Banner directly next to Best Sellers */}
+        <AudioPromoBanner />
 
         {/* Bundle of the Week (5-column grid) */}
         <ProductGridSection

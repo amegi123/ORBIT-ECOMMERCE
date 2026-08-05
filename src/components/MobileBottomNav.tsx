@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Grid, Phone, ShoppingCart, User } from 'lucide-react';
+import { Home, Grid, ShoppingCart, User } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 export const MobileBottomNav: React.FC = () => {
@@ -31,25 +31,14 @@ export const MobileBottomNav: React.FC = () => {
 
         {/* 2. Categories Link */}
         <Link
-          href="/#category-tvs"
+          href="/all-products"
           className="flex flex-col items-center justify-center gap-0.5 text-white hover:opacity-80 transition-opacity py-1 px-3"
         >
           <Grid className="w-5 h-5 text-white" />
           <span className="text-[10px] font-bold tracking-tight text-white">Categories</span>
         </Link>
 
-        {/* 3. Call Hotline 6226 */}
-        <a
-          href="tel:6226"
-          className="flex flex-col items-center justify-center gap-0.5 py-1 px-3 text-white hover:opacity-80 transition-opacity"
-        >
-          <div className="w-7 h-7 rounded-full bg-white text-[#02367B] flex items-center justify-center font-black shadow-md">
-            <Phone className="w-3.5 h-3.5 text-[#02367B]" />
-          </div>
-          <span className="text-[10px] font-black tracking-tight text-white">6226</span>
-        </a>
-
-        {/* 4. Cart Button */}
+        {/* 3. Cart Button */}
         <button
           onClick={() => setIsCartOpen(true)}
           className="relative flex flex-col items-center justify-center gap-0.5 text-white hover:opacity-80 transition-opacity py-1 px-3"

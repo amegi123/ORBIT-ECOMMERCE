@@ -9,6 +9,8 @@ import { CartDrawer } from '@/components/product/CartDrawer';
 import { ProductComparison } from '@/components/product/ProductComparison';
 import { AskQuestionModal } from '@/components/product/AskQuestionModal';
 import { QuickViewModal } from '@/components/product/QuickViewModal';
+import { FloatingActionButton } from '@/components/FloatingActionButton';
+import { LanguageSelectionModal } from '@/components/LanguageSelectionModal';
 
 export const metadata: Metadata = {
   title: 'Orbit Electronics Ethiopia | Smart 4K TVs, Appliances & Dispensers',
@@ -40,6 +42,8 @@ export default function RootLayout({
             <Footer />
             <MobileBottomNav />
           </div>
+          <FloatingActionButton />
+          <LanguageSelectionModal />
           <ToastContainer />
           <CartDrawer />
           <ProductComparison />

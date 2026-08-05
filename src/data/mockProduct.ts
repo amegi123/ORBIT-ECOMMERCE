@@ -226,3 +226,257 @@ export const similarProducts = [
     inStock: true,
   },
 ];
+
+export const catalogProductsMap: Record<string, {
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+  oldPrice?: number;
+  image: string;
+  rating?: number;
+  reviewCount?: number;
+}> = {
+  'orbit-tv-65-smart-4k': {
+    id: 'orbit-tv-65-smart-4k',
+    name: 'Orbit 65" Smart 4K UHD TV',
+    category: 'Televisions',
+    price: 95000,
+    oldPrice: 110000,
+    image: '/img/android20orbit65.webp',
+    rating: 5,
+    reviewCount: 128,
+  },
+  'orbit-tv-55-smart': {
+    id: 'orbit-tv-55-smart',
+    name: 'Orbit 55" Smart 4K UHD Android TV',
+    category: 'Televisions',
+    price: 72000,
+    oldPrice: 85000,
+    image: '/img/smart204320hd.webp',
+    rating: 4.7,
+    reviewCount: 94,
+  },
+  'orbit-tv-55-smart-4k': {
+    id: 'orbit-tv-55-smart-4k',
+    name: 'Orbit 55" Smart 4K UHD TV',
+    category: 'Televisions',
+    price: 72000,
+    oldPrice: 85000,
+    image: '/img/smart204320hd.webp',
+    rating: 5,
+    reviewCount: 94,
+  },
+  'orbit-tv-75-qled': {
+    id: 'orbit-tv-75-qled',
+    name: 'Orbit 75" QLED Master Cinema 4K TV',
+    category: 'QLED TVs',
+    price: 165000,
+    oldPrice: 190000,
+    image: '/img/android20orbit75.webp',
+    rating: 4.9,
+    reviewCount: 41,
+  },
+  'gas-cooker-stove-4b': {
+    id: 'gas-cooker-stove-4b',
+    name: 'Orbit 4-Burner Gas Cooker Stove',
+    category: 'Stoves',
+    price: 34000,
+    oldPrice: 39000,
+    image: '/img/stoves50X50.jpeg',
+    rating: 5,
+    reviewCount: 14,
+  },
+  '10kg-manual-washer': {
+    id: '10kg-manual-washer',
+    name: '10kg Manual Washing Machine',
+    category: 'Washing Machines',
+    price: 28500,
+    oldPrice: 32000,
+    image: '/img/product-washing3.webp',
+    rating: 5,
+    reviewCount: 22,
+  },
+  '8kg-auto-toploader': {
+    id: '8kg-auto-toploader',
+    name: '8kg Automatic Top Loader Washing Machine',
+    category: 'Washing Machines',
+    price: 45000,
+    oldPrice: 51000,
+    image: '/img/product-washing1.jpeg',
+    rating: 5,
+    reviewCount: 19,
+  },
+  'orbit-wash-12kg': {
+    id: 'orbit-wash-12kg',
+    name: 'Orbit 12KG Front Load Smart Washing Machine',
+    category: 'Washing Machines',
+    price: 68000,
+    oldPrice: 78000,
+    image: '/img/product-washing1.jpeg',
+    rating: 4.8,
+    reviewCount: 63,
+  },
+  'orbit-wash-twin-8kg': {
+    id: 'orbit-wash-twin-8kg',
+    name: 'Orbit 8KG Twin Tub Semi-Automatic Washer',
+    category: 'Washing Machines',
+    price: 32000,
+    oldPrice: 38000,
+    image: '/img/product-washing2.jpeg',
+    rating: 4.6,
+    reviewCount: 52,
+  },
+  'side-by-side-fridge': {
+    id: 'side-by-side-fridge',
+    name: 'Orbit Side-by-Side Premium Refrigerator (520L)',
+    category: 'Refrigerators',
+    price: 115000,
+    oldPrice: 130000,
+    image: '/img/550a_compressed.webp',
+    rating: 5,
+    reviewCount: 38,
+  },
+  'normal-800-refrigerator': {
+    id: 'normal-800-refrigerator',
+    name: 'Normal 800 Refrigerator with Net 600L Capacity',
+    category: 'Refrigerators',
+    price: 63000,
+    oldPrice: 65000,
+    image: '/img/550a_compressed.webp',
+    rating: 5,
+    reviewCount: 1,
+  },
+  'refrigerator-740': {
+    id: 'refrigerator-740',
+    name: 'Refrigerator 740',
+    category: 'Refrigerators',
+    price: 63000,
+    oldPrice: 72000,
+    image: '/img/showcase660a.webp',
+    rating: 5,
+    reviewCount: 3,
+  },
+  'normal-770-refrigerator': {
+    id: 'normal-770-refrigerator',
+    name: 'Normal 770 Refrigerator with Net 580L Capacity',
+    category: 'Refrigerators',
+    price: 53000,
+    oldPrice: 58000,
+    image: '/img/sleek-stainless-steel-french-door-refrigerator.avif',
+    rating: 5,
+    reviewCount: 2,
+  },
+  'normal-730-refrigerator': {
+    id: 'normal-730-refrigerator',
+    name: 'Normal 730 Refrigerator with Net 600L Capacity',
+    category: 'Refrigerators',
+    price: 63000,
+    oldPrice: 68000,
+    image: '/img/deepfreez900b.webp',
+    rating: 5,
+    reviewCount: 4,
+  },
+  'builtin-gas-stove-pro': {
+    id: 'builtin-gas-stove-pro',
+    name: 'Orbit Built-In 4-Burner Glass Top Gas Stove',
+    category: 'Stoves',
+    price: 42000,
+    oldPrice: 48000,
+    image: '/img/stoves-full-electric.webp',
+    rating: 5,
+    reviewCount: 23,
+  },
+  'water-dispenser-hot-cold': {
+    id: 'water-dispenser-hot-cold',
+    name: 'Orbit Hot & Cold Water Dispenser with Fridge',
+    category: 'Water Dispensers',
+    price: 18500,
+    oldPrice: 22000,
+    image: '/img/water1_compressed.webp',
+    rating: 5,
+    reviewCount: 18,
+  },
+  'commercial-double-oven': {
+    id: 'commercial-double-oven',
+    name: 'Commercial Double Deck Baking Oven',
+    category: 'Kitchen Appliances',
+    price: 185000,
+    oldPrice: 210000,
+    image: '/img/product-washing4.jpeg',
+    rating: 5,
+    reviewCount: 12,
+  },
+  'stn-gas-stove-heavy': {
+    id: 'stn-gas-stove-heavy',
+    name: 'Stainless Steel 4-Burner Gas Stove',
+    category: 'Stoves',
+    price: 36000,
+    oldPrice: 42000,
+    image: '/img/stoves50X50.jpeg',
+    rating: 5,
+    reviewCount: 27,
+  },
+  'electric-builtin-oven': {
+    id: 'electric-builtin-oven',
+    name: 'Orbit Built-In Convection Electric Oven',
+    category: 'Kitchen Appliances',
+    price: 58000,
+    oldPrice: 65000,
+    image: '/img/stoves-full-electric.webp',
+    rating: 5,
+    reviewCount: 16,
+  },
+  'double-door-fridge-350l': {
+    id: 'double-door-fridge-350l',
+    name: 'Double Door No-Frost Refrigerator (350L)',
+    category: 'Refrigerators',
+    price: 78000,
+    oldPrice: 88000,
+    image: '/img/550a_compressed.webp',
+    rating: 5,
+    reviewCount: 44,
+  },
+};
+
+export function getProductById(id: string): Product {
+  if (id === orbitProduct.id) {
+    return orbitProduct;
+  }
+
+  const foundInCatalog = catalogProductsMap[id] || similarProducts.find((p) => p.id === id);
+
+  if (foundInCatalog) {
+    const mainImg = 'image' in foundInCatalog ? foundInCatalog.image : (foundInCatalog as any).image;
+    const itemPrice = 'price' in foundInCatalog ? foundInCatalog.price : (foundInCatalog as any).currentPrice;
+    const oldP = foundInCatalog.oldPrice || Math.round(itemPrice * 1.15);
+
+    return {
+      ...orbitProduct,
+      id: foundInCatalog.id,
+      name: foundInCatalog.name,
+      currentPrice: itemPrice,
+      oldPrice: oldP,
+      rating: foundInCatalog.rating || 5,
+      reviewCount: foundInCatalog.reviewCount || 25,
+      images: [mainImg],
+      category: foundInCatalog.category,
+      categoryHierarchy: ['Home', foundInCatalog.category, foundInCatalog.name],
+      shortDescription: `${foundInCatalog.name} - Genuine Orbit product with 2-Year Ethiopia Warranty.`,
+    };
+  }
+
+  // Fallback for any unknown slug ID
+  const cleanTitle = id
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+
+  return {
+    ...orbitProduct,
+    id,
+    name: cleanTitle,
+    categoryHierarchy: ['Home', orbitProduct.category, cleanTitle],
+    shortDescription: `${cleanTitle} - Official Orbit Electronics with 2 Years Warranty.`,
+  };
+}

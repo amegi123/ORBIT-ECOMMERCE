@@ -3,9 +3,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { User, Phone, Mail, Lock, Eye, EyeOff, ArrowRight, ArrowLeft, CheckCircle, AlertCircle } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
 
 export default function SignupPage() {
+  const router = useRouter();
+  const { addToast } = useCart();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [fullName, setFullName] = useState('');
@@ -17,10 +21,13 @@ export default function SignupPage() {
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert('Passwords do not match. Please verify your password confirmation.');
+      addToast('Warning', 'Passwords do not match. Please check again.', 'warning');
       return;
     }
-    alert('Account created successfully!');
+    addToast('Success', 'Logged in successfully!', 'success');
+    setTimeout(() => {
+      router.push('/');
+    }, 700);
   };
 
   const passwordsMatch = confirmPassword.length > 0 && password === confirmPassword;
