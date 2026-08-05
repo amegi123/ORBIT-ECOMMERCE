@@ -118,19 +118,19 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
       </div>
 
       {/* Thumbnails Row */}
-      <div className="flex items-center gap-3 overflow-x-auto pb-1.5 scrollbar-none">
+      <div className="flex items-center gap-3 overflow-x-auto py-2 px-1 scrollbar-none">
         {images.map((img, idx) => (
           <button
             key={idx}
             type="button"
             onClick={() => setSelectedIndex(idx)}
-            className={`relative w-20 h-20 bg-white rounded-2xl border overflow-hidden shrink-0 transition-all p-2 cursor-pointer ${
+            className={`relative w-20 h-20 bg-white rounded-2xl border shrink-0 transition-all p-2.5 cursor-pointer ${
               selectedIndex === idx
-                ? 'border-2 border-amber-400 shadow-sm ring-2 ring-amber-400/30 scale-105'
+                ? 'border-2 border-amber-400 scale-105 shadow-sm'
                 : 'border-slate-200 opacity-70 hover:opacity-100'
             }`}
           >
-            <Image src={img} alt={`Thumbnail ${idx + 1}`} fill className="object-contain p-1" />
+            <Image src={img} alt={`Thumbnail ${idx + 1}`} fill className="object-contain p-1.5" />
           </button>
         ))}
       </div>
@@ -196,13 +196,13 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
                 key={idx}
                 type="button"
                 onClick={() => setSelectedIndex(idx)}
-                className={`relative w-16 h-16 rounded-xl border overflow-hidden shrink-0 transition-all p-1 cursor-pointer ${
+                className={`relative w-16 h-16 rounded-xl border shrink-0 transition-all p-2 cursor-pointer ${
                   selectedIndex === idx
-                    ? 'border-2 border-amber-400 ring-2 ring-amber-400/40 scale-105'
+                    ? 'border-2 border-amber-400 scale-105'
                     : 'border-slate-800 opacity-60 hover:opacity-100'
                 }`}
               >
-                <Image src={img} alt={`Thumb ${idx}`} fill className="object-contain" />
+                <Image src={img} alt={`Thumb ${idx}`} fill className="object-contain p-1" />
               </button>
             ))}
           </div>

@@ -53,11 +53,9 @@ body {
   background: #94a3b8;
 }
 
-/* Smooth Tab Scroll */
-.sticky-tabs-container {
-  position: sticky;
-  top: 73px;
-  z-index: 30;
+/* Tab Scroll Container */
+.tabs-container {
+  position: relative;
 }
 
 /* Progress bar loader animation */

@@ -36,7 +36,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   const product = getProductById(params.id);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 space-y-8 pb-16 font-sans">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 space-y-10 pb-16 font-sans">
       {/* 1. Breadcrumb Navigation */}
       <Breadcrumb hierarchy={product.categoryHierarchy} />
 
@@ -63,7 +63,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         reviewCount={product.reviewCount}
       />
 
-      {/* 4. Sticky Product Tabs (Specs, Installation, FAQs) */}
+      {/* 5. Sticky Product Tabs (Specs, Installation, FAQs) */}
       <ProductTabs product={product} />
 
       {/* 6. Similar Products Recommendation Grid */}

@@ -16,6 +16,7 @@ import {
   Globe,
   LogIn,
   ChevronDown,
+  Sparkles,
 } from 'lucide-react';
 
 // SVG Flag Components for high quality rendering across all OS/Browsers
@@ -75,7 +76,7 @@ const USFlag: React.FC<{ className?: string }> = ({ className = "w-5 h-3.5" }) =
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
-  const { cart, setIsCartOpen, language, setIsLanguageModalOpen } = useCart();
+  const { cart, setIsCartOpen, language, setIsLanguageModalOpen, setIsAiAssistantOpen } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isVisible, setIsVisible] = useState(true);

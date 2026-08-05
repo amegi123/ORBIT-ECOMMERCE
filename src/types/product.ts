@@ -58,6 +58,8 @@ export interface Product {
   model: string;
   availability: 'In Stock' | 'Out of Stock' | 'Limited Stock';
   stockCount: number;
+  viewCount?: number;
+  soldCount?: number;
   warranty: string;
   rating: number;
   reviewCount: number;

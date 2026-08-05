@@ -9,7 +9,6 @@ import {
   MessageSquare,
   CheckCircle,
   Upload,
-  Calculator,
   Truck,
   ShieldAlert,
   HelpCircle,
@@ -22,7 +21,7 @@ interface ProductTabsProps {
 
 export const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
   const { addToast, setIsAskQuestionOpen } = useCart();
-  const [activeTab, setActiveTab] = useState<'description' | 'specifications' | 'reviews' | 'shipping' | 'emi' | 'faqs'>('description');
+  const [activeTab, setActiveTab] = useState<'description' | 'specifications' | 'reviews' | 'shipping' | 'faqs'>('description');
 
   // Review Form state
   const [newRating, setNewRating] = useState(5);
@@ -36,10 +35,6 @@ export const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
     est: 'Tomorrow (Same Day Express available)',
     fee: 'FREE Delivery',
   });
-
-  // EMI Calculator state
-  const [downPayment, setDownPayment] = useState(25000);
-  const [months, setMonths] = useState(6);
 
   const subCities = [
     'Bole',
@@ -81,31 +76,25 @@ export const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
     });
   };
 
-  // EMI Calculation: Total Price minus DownPayment split across months
-  const principal = Math.max(0, product.currentPrice - downPayment);
-  const interestRate = 0.08; // 8% annual interest estimate
-  const monthlyPayment = Math.round((principal * (1 + interestRate)) / months);
-
   return (
-    <div className="w-full mt-12 space-y-8">
-      {/* Sticky Navigation Tabs */}
-      <div className="sticky-tabs-container border-b border-slate-200 shadow-sm rounded-xl">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 sm:gap-6 overflow-x-auto px-4 py-2 scrollbar-none">
+    <div className="w-full mt-12 space-y-6">
+      {/* Product Navigation Tabs in Box Style */}
+      <div className="tabs-container bg-slate-50/90 border border-slate-200/90 rounded-2xl p-2.5 shadow-xs">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
           {[
             { id: 'description', label: 'Description' },
             { id: 'specifications', label: 'Specifications' },
             { id: 'reviews', label: `Reviews (${reviewsList.length})` },
             { id: 'shipping', label: 'Delivery Calculator' },
-            { id: 'emi', label: 'EMI Installments' },
             { id: 'faqs', label: 'FAQs & Support' },
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`py-3 px-4 text-xs font-extrabold uppercase tracking-wider shrink-0 transition-all border-b-2 ${
+              className={`py-3 px-3 text-xs font-bold uppercase tracking-wider text-center transition-all rounded-xl cursor-pointer border flex items-center justify-center min-h-[46px] ${
                 activeTab === tab.id
-                  ? 'border-blue-600 text-blue-600 bg-blue-50/50 rounded-t-lg'
-                  : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'
+                  ? 'bg-[#02367B] text-white border-[#02367B] shadow-md scale-[1.02]'
+                  : 'bg-white text-slate-700 border-slate-200/80 hover:bg-slate-100 hover:border-slate-300'
               }`}
             >
               {tab.label}
@@ -378,71 +367,6 @@ export const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
                   <li>Tracking number sent via SMS upon dispatch.</li>
                   <li>Full transit insurance included.</li>
                 </ul>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* EMI Installments Calculator Tab */}
-        {activeTab === 'emi' && (
-          <div className="space-y-6">
-            <h3 className="text-lg font-bold text-slate-900 border-l-4 border-amber-500 pl-3">
-              Ethiopian Bank EMI / Installment Calculator
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-              <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200 space-y-4">
-                <div>
-                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">
-                    Down Payment (ETB):
-                  </label>
-                  <input
-                    type="number"
-                    value={downPayment}
-                    onChange={(e) => setDownPayment(Number(e.target.value))}
-                    step={5000}
-                    min={10000}
-                    max={90000}
-                    className="w-full p-3 text-sm bg-white border border-slate-300 rounded-xl font-bold text-slate-900 focus:outline-none focus:border-blue-600"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">
-                    Tenure Duration (Months):
-                  </label>
-                  <div className="flex gap-2">
-                    {[3, 6, 9, 12].map((m) => (
-                      <button
-                        key={m}
-                        type="button"
-                        onClick={() => setMonths(m)}
-                        className={`flex-1 py-2.5 rounded-xl border text-xs font-bold transition-all ${
-                          months === m
-                            ? 'bg-amber-400 border-amber-500 text-slate-950 shadow'
-                            : 'bg-white border-slate-300 text-slate-700'
-                        }`}
-                      >
-                        {m} Months
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Monthly Result Card */}
-              <div className="p-6 bg-slate-950 text-white rounded-2xl space-y-4 border border-slate-800">
-                <div className="flex items-center gap-2 text-amber-400 text-xs font-bold">
-                  <Calculator className="w-5 h-5" /> Estimated Monthly Payment
-                </div>
-                <div className="text-4xl font-black text-white">
-                  {monthlyPayment.toLocaleString()} <span className="text-lg text-amber-400 font-bold">ETB / Month</span>
-                </div>
-                <div className="text-xs text-slate-400 space-y-1 border-t border-slate-800 pt-3">
-                  <p>Product Price: {product.currentPrice.toLocaleString()} ETB</p>
-                  <p>Down Payment: {downPayment.toLocaleString()} ETB</p>
-                  <p>Tenure: {months} Months (Awash / CBE / Dashen Partner Plan)</p>
-                </div>
               </div>
             </div>
           </div>

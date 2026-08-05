@@ -23,7 +23,7 @@ export const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
   };
 
   return (
-    <div className="w-full bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 space-y-6 shadow-sm font-sans select-none">
+    <div id="customer-reviews" className="w-full bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 space-y-6 shadow-sm font-sans select-none">
       {/* Header Matching Screenshot */}
       <div className="flex items-center justify-between border-b border-slate-100 pb-4">
         <h2 className="text-xl font-bold text-slate-900">Customer Reviews</h2>

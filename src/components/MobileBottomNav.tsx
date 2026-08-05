@@ -18,7 +18,7 @@ export const MobileBottomNav: React.FC = () => {
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-[#02367B]/95 backdrop-blur-md text-white border-t border-[#005BAA]/80 shadow-[0_-4px_20px_rgba(0,0,0,0.3)] select-none">
+    <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden transform-gpu translate-z-0 bg-[#02367B]/95 backdrop-blur-md text-white border-t border-[#005BAA]/80 shadow-[0_-4px_20px_rgba(0,0,0,0.3)] select-none pb-[env(safe-area-inset-bottom)]">
       <div className="flex items-center justify-around py-2 px-1">
         {/* 1. Home Link */}
         <Link

@@ -11,6 +11,8 @@ import { AskQuestionModal } from '@/components/product/AskQuestionModal';
 import { QuickViewModal } from '@/components/product/QuickViewModal';
 import { FloatingActionButton } from '@/components/FloatingActionButton';
 import { LanguageSelectionModal } from '@/components/LanguageSelectionModal';
+import { AiAssistantModal } from '@/components/AiAssistantModal';
+
 
 export const metadata: Metadata = {
   title: 'Orbit Electronics Ethiopia | Smart 4K TVs, Appliances & Dispensers',
@@ -36,14 +38,16 @@ export default function RootLayout({
         <CartProvider>
           <div className="min-h-screen flex flex-col justify-between">
             <Header />
-            <main className="flex-1 w-full">
+            <main className="flex-1 w-full pb-16 lg:pb-0">
               {children}
             </main>
             <Footer />
             <MobileBottomNav />
           </div>
           <FloatingActionButton />
+
           <LanguageSelectionModal />
+          <AiAssistantModal />
           <ToastContainer />
           <CartDrawer />
           <ProductComparison />

@@ -10,6 +10,8 @@ export const orbitProduct: Product = {
   model: 'ORB-65UHD-PRO',
   availability: 'In Stock',
   stockCount: 42,
+  viewCount: 1482,
+  soldCount: 326,
   warranty: '2 Years Official Warranty',
   rating: 4.8,
   reviewCount: 128,
