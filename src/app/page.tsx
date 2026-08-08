@@ -1,5 +1,4 @@
 import { HeroBanner } from '@/components/home/HeroBanner';
-import { ShopByCategory } from '@/components/home/ShopByCategory';
 import { DealAndLatestProducts } from '@/components/home/DealAndLatestProducts';
 import { ProductGridSection } from '@/components/home/ProductGridSection';
 import { AudioPromoBanner } from '@/components/home/AudioPromoBanner';
@@ -18,10 +17,7 @@ export default function HomePage() {
       <HeroBanner />
 
       {/* 2. Main Container for Homepage Content */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-12">
-        {/* Shop by Category Grid */}
-        <ShopByCategory />
-
+      <div className="max-w-[1536px] mx-auto px-3 sm:px-4 md:px-6 space-y-12">
         {/* Deal of the Day & Latest Products Section (Matches reference image) */}
         <DealAndLatestProducts />
 

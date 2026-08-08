@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-[#02367B] text-slate-100 border-t-2 border-amber-400/40 pt-12 pb-24 md:pb-12 shadow-2xl select-none">
       {/* Main 4-Column Footer Navigation */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 border-b border-[#005BAA]/60">
+      <div className="max-w-[1536px] mx-auto px-3 sm:px-4 md:px-6 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 border-b border-[#005BAA]/60">
         {/* Column 1: Brand Info & Socials */}
         <div className="lg:col-span-2 space-y-5">
           <Link href="/" className="inline-block">
@@ -187,7 +187,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Bar: Copyright, Security & Legal Links */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-200">
+      <div className="max-w-[1536px] mx-auto px-3 sm:px-4 md:px-6 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-200">
         <p>© {new Date().getFullYear()} Orbit Electronics Ethiopia. All rights reserved.</p>
 
         <div className="flex items-center gap-6">

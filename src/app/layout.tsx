@@ -11,6 +11,7 @@ import { AskQuestionModal } from '@/components/product/AskQuestionModal';
 import { QuickViewModal } from '@/components/product/QuickViewModal';
 import { FloatingActionButton } from '@/components/FloatingActionButton';
 import { LanguageSelectionModal } from '@/components/LanguageSelectionModal';
+import { TikTokerVotingModal } from '@/components/TikTokerVotingModal';
 
 export const metadata: Metadata = {
   title: 'Orbit Electronics Ethiopia | Smart 4K TVs, Appliances & Dispensers',
@@ -32,6 +33,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" href="/img/Orbi logo.svg" as="image" type="image/svg+xml" />
+        <link rel="preload" href="/img/bestsellers_banner.png" as="image" type="image/png" />
+      </head>
       <body className="antialiased selection:bg-[#02367B] selection:text-white bg-slate-50 text-slate-900">
         <CartProvider>
           <div className="min-h-screen flex flex-col justify-between">
@@ -45,12 +50,28 @@ export default function RootLayout({
           <FloatingActionButton />
 
           <LanguageSelectionModal />
+          <TikTokerVotingModal />
           <ToastContainer />
           <CartDrawer />
           <ProductComparison />
           <AskQuestionModal />
           <QuickViewModal />
         </CartProvider>
+
+        {/* Browser Caching Service Worker Registration Script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').catch(function(err) {
+                    console.log('SW registration failed:', err);
+                  });
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

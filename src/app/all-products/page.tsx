@@ -163,6 +163,7 @@ const categoryCounts = [
   { name: 'Washing Machines', count: 8 },
   { name: 'Refrigerators', count: 29 },
   { name: 'Stoves', count: 5 },
+  { name: 'Other Electronics & Accessories', count: 12 },
 ];
 
 const brandCounts = [
@@ -269,7 +270,7 @@ export default function AllProductsPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1 select-none">
+    <div className="max-w-[1536px] mx-auto px-3 sm:px-4 md:px-6 py-6 w-full flex-1 select-none">
       {/* Breadcrumb Navigation */}
       <nav className="flex items-center gap-2 text-xs text-slate-500 mb-6 font-medium">
         <Link href="/" className="hover:text-[#02367B] transition-colors">

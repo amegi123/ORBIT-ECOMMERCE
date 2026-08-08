@@ -46,6 +46,8 @@ interface CartContextType {
   setIsLanguageModalOpen: (open: boolean) => void;
   isAiAssistantOpen: boolean;
   setIsAiAssistantOpen: (open: boolean) => void;
+  isVotingModalOpen: boolean;
+  setIsVotingModalOpen: (open: boolean) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -64,6 +66,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [language, setLanguageState] = useState<string>('en');
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
   const [isAiAssistantOpen, setIsAiAssistantOpen] = useState(false);
+  const [isVotingModalOpen, setIsVotingModalOpen] = useState(false);
 
   // Check first-time language selection from localStorage on mount
   useEffect(() => {
@@ -215,6 +218,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setIsLanguageModalOpen,
         isAiAssistantOpen,
         setIsAiAssistantOpen,
+        isVotingModalOpen,
+        setIsVotingModalOpen,
       }}
     >
       {children}

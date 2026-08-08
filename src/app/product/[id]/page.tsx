@@ -35,7 +35,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   const product = getProductById(params.id);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 space-y-10 pb-16 font-sans">
+    <div className="max-w-[1536px] mx-auto px-3 sm:px-4 md:px-6 py-6 space-y-10 pb-16 font-sans">
       {/* 1. Breadcrumb Navigation */}
       <Breadcrumb hierarchy={product.categoryHierarchy} />
 

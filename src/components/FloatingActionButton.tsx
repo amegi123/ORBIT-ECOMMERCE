@@ -10,21 +10,70 @@ import {
   ShoppingCart,
   X,
   Globe,
+  Award,
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 export const FloatingActionButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const { cart, setIsCartOpen, setIsAskQuestionOpen, setIsLanguageModalOpen } = useCart();
+  const { cart, setIsCartOpen, setIsAskQuestionOpen, setIsLanguageModalOpen, addToast } = useCart();
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const handleVoteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToast(
+      'Coming Soon! 🗳️',
+      'TikTokers Choice voting is coming soon! Stay tuned for updates',
+      'info'
+    );
+  };
 
   // If on product detail page, MobileStickyBar is present (bottom-[56px]), so push FAB higher to avoid covering Buy Now button
   const isProductPage = pathname?.startsWith('/product/');
   const bottomPosition = isProductPage ? 'bottom-36 md:bottom-8' : 'bottom-20 md:bottom-8';
+  const voteBottomPosition = isProductPage ? 'bottom-52 md:bottom-24' : 'bottom-36 md:bottom-24';
 
   return (
     <>
+      {/* ─────────────────────────────────────────
+          Dedicated 3D Vote Floating Button (Always Visible)
+          ───────────────────────────────────────── */}
+      <div
+        className={`fixed ${voteBottomPosition} right-4 md:right-8 z-50 flex items-center gap-2.5 font-sans select-none group transition-all duration-300`}
+      >
+        {/* Hover Tooltip Badge */}
+        <div className="absolute right-16 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-1.5 bg-slate-900/95 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1.5 rounded-full shadow-lg border border-slate-700/80 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">
+          <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+          <span>Vote TikTokers 🗳️</span>
+        </div>
+
+        <button
+          type="button"
+          onClick={handleVoteClick}
+          aria-label="Vote Ethiopian TikTokers"
+          className="relative w-14 h-14 rounded-2xl bg-white hover:bg-slate-50 flex items-center justify-center transition-all duration-300 shadow-xl border border-blue-200 cursor-pointer hover:scale-110 active:scale-95 p-1.5 group shadow-blue-900/20 pointer-events-auto"
+        >
+          <div className="relative w-full h-full z-10 flex items-center justify-center">
+            <Image
+              src="/img/vote_icon.png"
+              alt="Vote 3D Icon"
+              width={42}
+              height={42}
+              className="object-contain drop-shadow-sm group-hover:scale-110 transition-transform"
+            />
+          </div>
+
+          <span className="absolute -top-1 -right-1 flex h-4 w-4 z-20">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-4 w-4 bg-amber-500 border-2 border-white text-[9px] font-black text-slate-950 items-center justify-center">
+              🗳️
+            </span>
+          </span>
+        </button>
+      </div>
+
       {/* ─────────────────────────────────────────
           Support Speed Dial FAB (Always Visible)
           ───────────────────────────────────────── */}
@@ -34,11 +83,11 @@ export const FloatingActionButton: React.FC = () => {
           className={`flex flex-col items-end gap-3 transition-all duration-300 ease-out origin-bottom-right ${
             isOpen
               ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto'
-              : 'opacity-0 scale-90 translate-y-4 pointer-events-none'
+              : 'opacity-0 scale-90 translate-y-4 pointer-events-none hidden'
           }`}
         >
           {/* Hotline 6226 */}
-          <a href="tel:6226" className="flex items-center gap-2.5 group pointer-events-auto">
+          <a href="tel:6226" className={`flex items-center gap-2.5 group ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
             <span className="bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-medium px-3 py-1 rounded-full shadow-md border border-slate-700/80 whitespace-nowrap transition-transform group-hover:scale-105">
               Call (6226)
             </span>
@@ -52,7 +101,7 @@ export const FloatingActionButton: React.FC = () => {
             href="https://wa.me/251911000000?text=Hello%20Orbit%20Electronics%20Support"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2.5 group pointer-events-auto"
+            className={`flex items-center gap-2.5 group ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
           >
             <span className="bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-medium px-3 py-1 rounded-full shadow-md border border-slate-700/80 whitespace-nowrap transition-transform group-hover:scale-105">
               WhatsApp
@@ -66,7 +115,7 @@ export const FloatingActionButton: React.FC = () => {
           <button
             type="button"
             onClick={() => { setIsLanguageModalOpen(true); setIsOpen(false); }}
-            className="flex items-center gap-2.5 group pointer-events-auto cursor-pointer"
+            className={`flex items-center gap-2.5 group cursor-pointer ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
           >
             <span className="bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-medium px-3 py-1 rounded-full shadow-md border border-slate-700/80 whitespace-nowrap transition-transform group-hover:scale-105">
               Language / ቋንቋ
@@ -80,7 +129,7 @@ export const FloatingActionButton: React.FC = () => {
           <button
             type="button"
             onClick={() => { setIsAskQuestionOpen(true); setIsOpen(false); }}
-            className="flex items-center gap-2.5 group pointer-events-auto cursor-pointer"
+            className={`flex items-center gap-2.5 group cursor-pointer ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
           >
             <span className="bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-medium px-3 py-1 rounded-full shadow-md border border-slate-700/80 whitespace-nowrap transition-transform group-hover:scale-105">
               Ask Question
@@ -94,7 +143,7 @@ export const FloatingActionButton: React.FC = () => {
           <button
             type="button"
             onClick={() => { setIsCartOpen(true); setIsOpen(false); }}
-            className="flex items-center gap-2.5 group pointer-events-auto cursor-pointer"
+            className={`flex items-center gap-2.5 group cursor-pointer ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
           >
             <span className="bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-medium px-3 py-1 rounded-full shadow-md border border-slate-700/80 whitespace-nowrap transition-transform group-hover:scale-105">
               Cart ({totalCartCount})

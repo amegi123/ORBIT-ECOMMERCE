@@ -1,10 +1,18 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
+import {
+  newArrivals,
+  bestSellers,
+  bundlesOfTheWeek,
+  recommendedProducts,
+  trendingProducts,
+  HomeProduct,
+} from '@/data/homeData';
 import {
   Search,
   ShoppingCart,
@@ -17,7 +25,18 @@ import {
   LogIn,
   ChevronDown,
   Sparkles,
+  ChevronRight,
+  ArrowRight,
 } from 'lucide-react';
+
+// Combined unique catalog for instant live search
+const searchableCatalog: HomeProduct[] = [
+  ...newArrivals,
+  ...bestSellers,
+  ...bundlesOfTheWeek,
+  ...recommendedProducts,
+  ...trendingProducts,
+].filter((item, index, self) => self.findIndex((t) => t.id === item.id) === index);
 
 // SVG Flag Components for high quality rendering across all OS/Browsers
 const EthiopiaFlag: React.FC<{ className?: string }> = ({ className = "w-5 h-3.5" }) => (
@@ -75,13 +94,18 @@ const USFlag: React.FC<{ className?: string }> = ({ className = "w-5 h-3.5" }) =
 );
 
 export const Header: React.FC = () => {
+  const router = useRouter();
   const pathname = usePathname();
-  const { cart, setIsCartOpen, language, setIsLanguageModalOpen } = useCart();
+  const { cart, setIsCartOpen, language, setIsLanguageModalOpen, triggerPageLoading } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
+  const desktopSearchRef = useRef<HTMLDivElement>(null);
+  const mobileSearchRef = useRef<HTMLDivElement>(null);
 
   const searchSuggestions = [
     'Search Samsung TV...',
@@ -98,6 +122,33 @@ export const Header: React.FC = () => {
     }, 2800);
     return () => clearInterval(timer);
   }, [searchSuggestions.length]);
+
+  // Click outside to close live search popup
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        desktopSearchRef.current &&
+        !desktopSearchRef.current.contains(e.target as Node) &&
+        mobileSearchRef.current &&
+        !mobileSearchRef.current.contains(e.target as Node)
+      ) {
+        setIsSearchFocused(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Filter products dynamically for live autocomplete
+  const filteredSearchResults = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return [];
+    return searchableCatalog.filter(
+      (item) =>
+        item.name.toLowerCase().includes(q) ||
+        item.category.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
 
   // Auto-hide header on mobile when scrolling down, show when scrolling up
   useEffect(() => {
@@ -138,7 +189,127 @@ export const Header: React.FC = () => {
     { name: 'Stoves Machines', href: '/#category-stoves' },
     { name: 'Water Dispensers', href: '/#category-dispensers' },
     { name: 'Dishwashers', href: '/#category-kitchen' },
+    { name: 'Other Electronics', href: '/all-products' },
   ];
+
+  // Render live search popup dropdown
+  const renderSearchPopup = () => {
+    if (!isSearchFocused) return null;
+
+    const query = searchQuery.trim();
+
+    return (
+      <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200/90 z-50 overflow-hidden text-slate-900 animate-in fade-in-50 zoom-in-95 duration-200">
+        {query === '' ? (
+          <div className="p-4 space-y-3">
+            <div className="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              <span>Popular Searches</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {[
+                'Smart 4K TV',
+                'Side-by-Side Refrigerator',
+                'Automatic Washer',
+                'Gas Stove',
+                'Water Dispenser',
+                'Electric Oven',
+              ].map((term) => (
+                <button
+                  key={term}
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery(term);
+                    setIsSearchFocused(true);
+                  }}
+                  className="px-3 py-1.5 bg-slate-100 hover:bg-[#02367B] hover:text-white text-slate-700 text-xs font-semibold rounded-full transition-colors cursor-pointer"
+                >
+                  {term}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div>
+            {/* Top Header line */}
+            <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+              <span className="text-xs font-bold text-slate-600">
+                Found {filteredSearchResults.length} result{filteredSearchResults.length === 1 ? '' : 's'} for &ldquo;<strong className="text-[#02367B]">{query}</strong>&rdquo;
+              </span>
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="text-[11px] font-bold text-slate-400 hover:text-red-500 transition-colors"
+              >
+                Clear
+              </button>
+            </div>
+
+            {/* Results items */}
+            {filteredSearchResults.length > 0 ? (
+              <div className="max-h-[340px] overflow-y-auto divide-y divide-slate-100">
+                {filteredSearchResults.slice(0, 6).map((prod) => (
+                  <div
+                    key={prod.id}
+                    onClick={() => {
+                      triggerPageLoading();
+                      setIsSearchFocused(false);
+                      router.push(`/product/${prod.id}`);
+                    }}
+                    className="p-3 flex items-center gap-3 hover:bg-blue-50/70 transition-colors cursor-pointer group"
+                  >
+                    <div className="relative w-12 h-12 bg-slate-100 rounded-xl p-1 shrink-0 overflow-hidden border border-slate-200/80">
+                      <Image
+                        src={prod.image}
+                        alt={prod.name}
+                        fill
+                        className="object-contain p-0.5 group-hover:scale-105 transition-transform"
+                      />
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#02367B] block">
+                        {prod.category}
+                      </span>
+                      <h4 className="text-xs font-bold text-slate-900 line-clamp-1 group-hover:text-[#02367B] transition-colors">
+                        {prod.name}
+                      </h4>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <span className="text-xs font-black text-slate-950">
+                          {prod.price.toLocaleString()} ETB
+                        </span>
+                        {prod.oldPrice && (
+                          <span className="text-[10px] text-slate-400 line-through">
+                            {prod.oldPrice.toLocaleString()} ETB
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-[#02367B] transition-colors shrink-0" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="p-6 text-center space-y-1.5">
+                <p className="text-xs font-bold text-slate-600">No products found matching &ldquo;{query}&rdquo;</p>
+                <p className="text-[11px] text-slate-400">Try searching for TVs, Refrigerators, Washing Machines, or Stoves.</p>
+              </div>
+            )}
+
+            {/* Footer View All */}
+            <Link
+              href="/all-products"
+              onClick={() => setIsSearchFocused(false)}
+              className="block px-4 py-3 bg-[#02367B] hover:bg-[#005BAA] text-white text-center text-xs font-bold transition-colors"
+            >
+              View All Products in Catalog &rarr;
+            </Link>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <header
@@ -147,7 +318,7 @@ export const Header: React.FC = () => {
       }`}
     >
       {/* Main Top Header Bar (First Color: #02367B) */}
-      <div className="bg-[#02367B] max-w-7xl mx-auto px-4 md:px-8 py-2 flex items-center justify-between gap-3">
+      <div className="bg-[#02367B] max-w-[1536px] mx-auto px-3 sm:px-4 md:px-6 py-2 flex items-center justify-between gap-3">
         {/* Mobile Menu Trigger */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -171,17 +342,46 @@ export const Header: React.FC = () => {
         </Link>
 
         {/* Desktop Search Input (hidden on mobile, visible on lg+) */}
-        <div className="hidden lg:flex flex-1 max-w-lg items-center bg-white rounded-full p-1 border border-[#00A9E0]/40 shadow-inner">
-          <input
-            type="text"
-            placeholder={searchSuggestions[placeholderIndex]}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-5 py-2 text-xs text-slate-800 bg-transparent focus:outline-none placeholder:text-slate-400 transition-all duration-300"
-          />
-          <button className="bg-[#02367B] hover:bg-[#005BAA] text-white p-2.5 rounded-full shrink-0 transition-colors">
-            <Search className="w-3.5 h-3.5" />
-          </button>
+        <div ref={desktopSearchRef} className="relative hidden lg:flex flex-1 max-w-lg items-center">
+          <div className="w-full flex items-center bg-white rounded-full p-1 border border-[#00A9E0]/40 shadow-inner focus-within:ring-2 focus-within:ring-amber-400 transition-all">
+            <input
+              type="text"
+              placeholder={searchSuggestions[placeholderIndex]}
+              value={searchQuery}
+              onFocus={() => setIsSearchFocused(true)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setIsSearchFocused(true);
+              }}
+              className="w-full px-5 py-2 text-xs text-slate-800 bg-transparent focus:outline-none placeholder:text-slate-400 transition-all duration-300"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="text-slate-400 hover:text-slate-700 p-1 mr-1"
+                aria-label="Clear Search"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => {
+                if (searchQuery.trim()) {
+                  triggerPageLoading();
+                  setIsSearchFocused(false);
+                  router.push('/all-products');
+                }
+              }}
+              className="bg-[#02367B] hover:bg-[#005BAA] text-white p-2.5 rounded-full shrink-0 transition-colors cursor-pointer"
+            >
+              <Search className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* Instant Search Popup Dropdown */}
+          {renderSearchPopup()}
         </div>
 
         {/* Right Top Utilities (Desktop) */}
@@ -244,24 +444,51 @@ export const Header: React.FC = () => {
       </div>
 
       {/* Mobile Dedicated Search Bar */}
-      <div className="lg:hidden px-4 pb-3 pt-1 max-w-7xl mx-auto">
-        <div className="flex items-center bg-white rounded-full p-1 border border-[#00A9E0]/40 shadow-md">
+      <div ref={mobileSearchRef} className="relative lg:hidden px-3 sm:px-4 pb-3 pt-1 max-w-[1536px] mx-auto">
+        <div className="flex items-center bg-white rounded-full p-1 border border-[#00A9E0]/40 shadow-md focus-within:ring-2 focus-within:ring-amber-400 transition-all">
           <input
             type="text"
             placeholder={searchSuggestions[placeholderIndex]}
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setIsSearchFocused(true)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setIsSearchFocused(true);
+            }}
             className="w-full px-4 py-1.5 text-xs text-slate-900 bg-transparent focus:outline-none placeholder:text-slate-400 transition-all duration-300"
           />
-          <button className="bg-[#02367B] hover:bg-[#005BAA] text-white p-2 rounded-full shrink-0 transition-colors">
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery('')}
+              className="text-slate-400 hover:text-slate-700 p-1 mr-1"
+              aria-label="Clear Search"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={() => {
+              if (searchQuery.trim()) {
+                triggerPageLoading();
+                setIsSearchFocused(false);
+                router.push('/all-products');
+              }
+            }}
+            className="bg-[#02367B] hover:bg-[#005BAA] text-white p-2 rounded-full shrink-0 transition-colors cursor-pointer"
+          >
             <Search className="w-3.5 h-3.5" />
           </button>
         </div>
+
+        {/* Mobile Instant Search Popup Dropdown */}
+        {renderSearchPopup()}
       </div>
 
       {/* Category Links Sub Nav Bar (Second Header Color: #005BAA) */}
       <nav className="bg-[#005BAA] border-t border-white/10 hidden lg:block shadow-inner">
-        <div className="max-w-7xl mx-auto px-8 flex items-center justify-center gap-8 text-[11px] font-bold tracking-wide">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 flex items-center justify-center gap-8 text-[11px] font-bold tracking-wide">
           {navLinks.map((link) => (
             <Link
               key={link.name}
